@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# ignore everything in the directory
+sandbox/node_modules/*
