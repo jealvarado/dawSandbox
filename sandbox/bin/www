@@ -8,12 +8,13 @@ var app = require('../app');
 var debug = require('debug')('sandbox:server');
 var http = require('http');
 var mongoose = require('mongoose');
+var config = require('../config');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(config.port);
 app.set('port', port);
 
 /**
@@ -26,7 +27,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-mongoose.connect('mongodb://userdaw:4321*@ds042729.mlab.com:42729/daw20162', (err,res) => {
+mongoose.connect(config.db, (err,res) => {
   if (err) throw err
     console.log('Conexion a la base de datos establecida...');
 

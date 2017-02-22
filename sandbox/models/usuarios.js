@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const UsuariosSchema = Schema({
+const UsuarioSchema = Schema({
 	nombre: String,
 	apellido: String,
 	tipoIdent: { type: String, enum: ['cedula','matricula'] },
@@ -14,4 +14,4 @@ const UsuariosSchema = Schema({
 	rol: { type: String, enum: ['Administrador','Profesor','Ayudante','Estudiante'] }
 })
 
-mongoose.model('Usuarios', UsuariosSchema)
+module.exports = mongoose.model('Usuario', UsuarioSchema)
