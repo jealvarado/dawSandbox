@@ -1,7 +1,7 @@
 $document.ready(function({
     $("#enviar").click(function(){
         
-       url ="json/perfil.json";
+       url ="json/perfil.json"; // esta url debe ser generada con el nombre del usuario
 
         $.getJSON(url, function(resp){
         	$("#name").html(resp.nombre);
