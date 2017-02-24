@@ -1,4 +1,5 @@
-        var url = "json/curso.json" // esta url debe ser generada con la fecha 
+$(document).ready(function(){
+    var url = "json/curso.json" // esta url debe ser generada con la fecha 
         $.getJSON(url, function(resp){
             r=resp;
             //tutorial del grafico 
@@ -6,7 +7,7 @@
             resp.data.forEach(function(i){
                 datos.push(
                 {
-                    
+                    name: "paralelo " + i.paralelo ,
                     y:Number(i.ejercicios)
                 });
             });
@@ -40,5 +41,5 @@
                     }]
                 });
             });
-            //
-        });
+});        
+        
