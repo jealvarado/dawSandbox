@@ -16,7 +16,7 @@ $(document).ready(function(){
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false,
-                    type: 'pie'
+                    type: 'column'
                 },
                 title: {
                     text: 'Reporte estadisticos cantidad de ejercicios por curso'
