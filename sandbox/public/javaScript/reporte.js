@@ -1,7 +1,7 @@
 var r
 $(document).ready(function(){
     $("#enviar").click(function(){
-        console.log("entro")
+        //console.log("entro")
         var fI=$("#fechaInicio").val();
         var fechaF = $("#fechaFin").val();
         //if((Date.parse(fI)) > (Date.parse(fechaF))){// 
@@ -25,7 +25,7 @@ $(document).ready(function(){
                     type: 'pie'
                 },
                 title: {
-                    text: 'Browser market shares January, 2015 to May, 2015'
+                    text: 'Reporte estadisticos por fecha'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
