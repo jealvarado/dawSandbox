@@ -1,38 +1,175 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="es">
+
 	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
 		<title><%= title %></title>
-		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" href="stylesheets/index_style00.css">
+		<link rel="stylesheet" href="stylesheets/index_style01.css">
 	</head>
+
 	<body>
-		<!-- <h1><%= title %></h1>
-		<p>Welcome to <%= title %></p> -->
 
-		<form action="/">
-			<div class="imgcontainer">
-				<img src="public/img/img_avatar2.png" alt="Avatar" class="avatar">
+		<div class="container">
+			<header>
+				<nav id="barra" class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+								<span class="sr-only">Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="index.html">
+								<img src="img/logo.png" alt="Fundamentos de Programación">
+        					</a>
+						</div>
+
+						<div class="collapse navbar-collapse" id="navbar-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li  class="active"><a href="#">Administracion</a></li>
+								<li> <a href="#">Reportes</a> </li>	
+							</ul>
+						</div>
+
+					</div>
+				</nav>
+			</header>			
+			
+			<section class="container-fluid">
+				<div class="row">
+					<ul class="nav nav-tabs">
+					    <li class="active"><a data-toggle="tab" href="#seccion1">Usuarios</a></li>
+					    <li><a data-toggle="tab" href="#seccion2">Cursos</a></li>
+					</ul>
+
+					<div class="tab-content">
+					    
+					    <div id="seccion1" class="tab-pane fade in active">					    	
+							<div class="panel-group col-xs-7 col-md-8" id="panelColl">
+						        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">
+						        	Nuevo
+						        </button>
+						        <br><br>
+								<!-- <table class="table table-bordered" id="manageMemberTable"> -->
+								<table id="manageMemberTable" class="display" cellspacing="0" width="100%">
+									<thead>
+										<tr>
+											<th>Identif.</th>
+											<th>Nombres</th>
+											<th>Apellidos</th>
+											<th>Carrera</th>
+											<th>Rol</th>
+											<th>Email</th>
+										</tr>
+									</thead>
+								</table>
+							    
+							</div>
+					    </div>
+
+					    <div id="seccion2" class="tab-pane fade">
+					    	<br>
+					        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">
+					        	Nuevo
+					        </button>
+					        <br>
+							<div id="lista_Prof">
+								<div class="row">
+							        <ul class="list-group col-xs-7 col-md-8">
+									    <li class="list-group-item list-group-item-info">
+									    	<a href="#"> <span class="label label-warning">Edit</span> </a>
+											<a href="#"> <span class="label label-danger">Delete</span> </a>
+									    	Ejercicio 1
+									    </li>
+									    <li class="list-group-item list-group-item-info">							    	 
+									    	<a href="#"> <span class="label label-warning">Edit</span> </a>
+											<a href="#"> <span class="label label-danger">Delete</span> </a>
+											Ejercicio 3
+									    </li>						    
+								  	</ul>
+								</div>
+							</div>
+					    </div>
+					</div>
+				</div>
+			</section>	
+
+			<!-- Modal -->
+			<div class="modal fade" id="modalEjerc" role="dialog">
+    			<div class="modal-dialog">
+					<div class="modal-content">
+					    <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h3><span class="glyphicon glyphicon-list-alt"></span> Nuevo Usuario </h3>
+					    </div>
+					    <div class="modal-body">
+					        <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="titulo" type="text" class="form-control input-lg" name="titulo" placeholder="Titulo">
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <textarea id="descrip" class="form-control input-sm" rows="2" placeholder="Descripción"></textarea>
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="autor" type="text" class="form-control input-sm" name="autor" placeholder="Autor">
+						    </div>
+						    <br>  
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="etiq" type="text" class="form-control input-sm" name="etiq" placeholder="Etiquetas">
+						    </div>	
+						    <br>  
+						    <div class="input-group">
+							    <label for="nivel">Dificultad.</label>
+								<select class="form-control" id="nivel">
+									<option>Principiante.</option>
+								    <option>Medio.</option>
+								    <option>Avanzado.</option>
+								</select>
+						    </div>
+						    <br>
+						    <p id="errorMsj"></p>
+						    <div class="form-group">
+						    	<button class="btn">Agregar</button>
+						    </div>
+					    </div>
+					</div>
+				</div>
 			</div>
+			<!-- Fin Modal -->
 
-			<div class="container">
-				<label><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="uname" required>
+			<footer>
+				<div id="sub-footer">
+					<div class="container2">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="copyright">
+									<P>Guayaquil, Ecuador</p>
+									<p>© Escuela Superior Politecnica del Litoral. All right reserved.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
 
-				<label><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="psw" required>
+		</div>
 
-				<!-- <button type="submit">Login</button> -->
-				<!-- <input type="checkbox" checked="checked"> Remember me -->
-			</div>
-
-			<div class="container" style="background-color:#f1f1f1">
-				<button type="submit">Login</button>
-				<!-- <button type="button" class="cancelbtn">Cancel</button> -->
-				<!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
-			</div>
-		</form>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  		<script type="text/javascript" src="javaScript/manageTable.js"></script>
 
 	</body>
+
 </html>
-
-
-

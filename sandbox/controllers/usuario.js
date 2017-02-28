@@ -23,7 +23,7 @@ function getUsuarios (req,res) {
 		if (!usuarios)
 			return res.status(404).send({ message: `No existen usuarios`})
 
-		res.send(200, { usuarios })
+		res.status(200).send(200, { usuarios })
 	})
 }
 

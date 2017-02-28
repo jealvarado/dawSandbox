@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 //var usrMdl = require('./models/usuarios');
 
 // routes
+var login = require('./routes/login');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var reporte = require('./routes/reporte');
@@ -38,8 +39,8 @@ app.use(session({
 }));
 
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/', login);
+app.use('/index', index);
 app.use('/reporte', reporte);
 app.use('/api/usuario', usuarioAPI);
 

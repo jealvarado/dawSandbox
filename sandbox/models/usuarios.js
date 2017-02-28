@@ -33,16 +33,19 @@ const UsuarioSchema = Schema({
 	},
 	correo: { 
 		type: String, 
-		required: "El correo es obligatorio"
+		required: "El correo es obligatorio",
+		match: email_match
 	},
 	contrasena: { 
 		type: String, 
-		minlength: [8, "Minimo 8 caracteres"],
-		match: email_match
+		minlength: [8, "Minimo 8 caracteres"]
 	},
 	rol: { 
 		type: String, 
 		enum: { values: roles, message: "Rol no valido" } 
+	},
+	paralelo: { 
+		type: String
 	}
 })
 
