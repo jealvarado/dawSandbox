@@ -1,0 +1,34 @@
+{
+  "curso": [
+    {
+      "paralelo": "1",
+      "ejercicios": "3",
+      "estudiante": [
+        {
+          "nombre": "ruddy"
+        },
+        {
+          "nombre": "jose"
+        },
+        {
+          "nombre": "maricela"
+        }
+      ]
+    },
+    {
+      "paralelo": "2",
+      "ejercicios": "5",
+      "estudiante": [
+        {
+          "nombre": "christopher"
+        },
+        {
+          "nombre": "juan"
+        },
+        {
+          "nombre": "maria"
+        }
+      ]
+    }
+  ]
+}

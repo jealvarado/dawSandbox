@@ -1,11 +1,5 @@
-var r
 $(document).ready(function(){
-    $("#enviar").click(function(){
-        //console.log("entro")
-        var fI=$("#fechaInicio").val();
-        var fechaF = $("#fechaFin").val();
-        //if((Date.parse(fI)) > (Date.parse(fechaF))){// 
-        var url = "json/fecha.json" // esta url debe ser generada con la fecha 
+    var url = "json/curso.json" // esta url debe ser generada con la fecha 
         $.getJSON(url, function(resp){
             r=resp;
             //tutorial del grafico 
@@ -13,7 +7,7 @@ $(document).ready(function(){
             resp.data.forEach(function(i){
                 datos.push(
                 {
-                    name:i.fecha,
+                    name: "paralelo " + i.paralelo ,
                     y:Number(i.ejercicios)
                 });
             });
@@ -22,10 +16,10 @@ $(document).ready(function(){
                     plotBackgroundColor: null,
                     plotBorderWidth: null,
                     plotShadow: false,
-                    type: 'pie'
+                    type: 'column'
                 },
                 title: {
-                    text: 'Reporte estadisticos por fecha'
+                    text: 'Reporte estadisticos cantidad de ejercicios por curso'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -47,7 +41,5 @@ $(document).ready(function(){
                     }]
                 });
             });
-            //
-        });
-});
-
+});        
+        
