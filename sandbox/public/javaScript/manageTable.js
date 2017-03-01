@@ -1,8 +1,9 @@
 
+var usrTabla;
 
 function cargarUsrTbl(){
 
-	$('#usuariosTabla').DataTable( {
+	usrTabla = $('#usuariosTabla').DataTable( {
 		// serverSide: true,
 	    ajax: {
 	        url: '/api/usuario/',
@@ -54,8 +55,8 @@ $(function() {
 	        contrasena	: $('input[name=pass]').val()
 	    };
 
-	    console.log(formData);
-	    console.log(JSON.stringify(formData));
+	    // console.log(formData);
+	    // console.log(JSON.stringify(formData));
 
 	    // process the form	       	        
 	    $.ajax({
@@ -66,10 +67,8 @@ $(function() {
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {
 	            console.log(response);
-	            //createInput.val('');
-	            //$('#get-button').click();
 	            borrarCampos();
-	            cargarUsrTbl();
+	            $('#usuarioMDL').modal('hide');
 	        }
 		});
 
