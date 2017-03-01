@@ -12,7 +12,7 @@
 }
 
 
-.btn-sm {
+#seccion1 .btn-sm, #seccion2 .btn-sm {
 	box-shadow: 1px 4px 5px #000000; 
 }
 
@@ -22,8 +22,8 @@
 }
 
 
-#modalEjerc .modal-body {
-	padding: 30px 40px;
+#usuarioMDL .modal-body, #cursoMDL .modal-body {
+	padding: 40px 50px;
 }
 
 /*
