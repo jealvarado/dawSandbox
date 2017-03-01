@@ -13,4 +13,4 @@ const PerfilSchema = Schema({
 	resueltos: {type: Array}
 })
 
-mongoose.model('Cursos', PerfilSchema)
+module.exports = mongoose.model('Perfil', PerfilSchema)

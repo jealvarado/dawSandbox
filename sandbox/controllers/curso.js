@@ -2,7 +2,7 @@
 
 var Curso = require('../models/cursos');
 
-function getPerfil (req,res) {
+function getCurso (req,res) {
 	let cursoId = req.params.cursoId
 
 	Curso.findById(cursoId, (err, curso) => {

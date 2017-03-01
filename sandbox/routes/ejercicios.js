@@ -1,7 +1,7 @@
 var express = require ('express');
 var router = express.Router();
 
-var ejercicioCtrl = require('../controllers/ejercicio');
+var ejercicioCtrl = require('../controllers/ejercicios');
 
 /* GET home page. */
 
