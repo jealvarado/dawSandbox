@@ -28,8 +28,7 @@ const UsuarioSchema = Schema({
 		maxlength: [10, "Maximo 10 caracteres"]
 	},
 	carrera: { 
-		type: String, 
-		required: "La carrera es obligatoria"
+		type: String  //, required: "La carrera es obligatoria"
 	},
 	correo: { 
 		type: String, 
@@ -38,7 +37,7 @@ const UsuarioSchema = Schema({
 	},
 	contrasena: { 
 		type: String, 
-		minlength: [8, "Minimo 8 caracteres"]
+		minlength: [8, "La contrasena debe tener minimo 8 caracteres"]
 	},
 	rol: { 
 		type: String, 

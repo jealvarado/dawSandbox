@@ -8,6 +8,7 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">		
 		<link rel="stylesheet" href="stylesheets/index_style00.css">
 		<link rel="stylesheet" href="stylesheets/index_style01.css">
 	</head>
@@ -51,16 +52,17 @@
 					<div class="tab-content">
 					    
 					    <div id="seccion1" class="tab-pane fade in active">					    	
-							<div class="panel-group col-xs-7 col-md-8" id="panelColl">
-						        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">
+							<!-- <div class="panel-group col-xs-7 col-md-8" id="panelColl"> -->
+						        <br>
+						        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#usuarioMDL">
 						        	Nuevo
 						        </button>
 						        <br><br>
 								<!-- <table class="table table-bordered" id="manageMemberTable"> -->
-								<table id="manageMemberTable" class="display" cellspacing="0" width="100%">
+								<table id="usuariosTabla" class="display" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-											<th>Identif.</th>
+											<th width="10%">Identificacion</th>
 											<th>Nombres</th>
 											<th>Apellidos</th>
 											<th>Carrera</th>
@@ -68,83 +70,94 @@
 											<th>Email</th>
 										</tr>
 									</thead>
-								</table>
-							    
-							</div>
+								</table>							    
+							<!-- </div> -->
 					    </div>
 
-					    <div id="seccion2" class="tab-pane fade">
-					    	<br>
-					        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">
+					    <div id="seccion2" class="tab-pane fade">	
+					    	<br>				    	
+					        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#cursoMDL">
 					        	Nuevo
 					        </button>
 					        <br>
-							<div id="lista_Prof">
-								<div class="row">
-							        <ul class="list-group col-xs-7 col-md-8">
-									    <li class="list-group-item list-group-item-info">
-									    	<a href="#"> <span class="label label-warning">Edit</span> </a>
-											<a href="#"> <span class="label label-danger">Delete</span> </a>
-									    	Ejercicio 1
-									    </li>
-									    <li class="list-group-item list-group-item-info">							    	 
-									    	<a href="#"> <span class="label label-warning">Edit</span> </a>
-											<a href="#"> <span class="label label-danger">Delete</span> </a>
-											Ejercicio 3
-									    </li>						    
-								  	</ul>
-								</div>
-							</div>
+							<table id="usuariosTabla" class="display" cellspacing="0" width="100%">
+								<thead>
+									<tr>
+										<th width="10%">Identificacion</th>
+										<th>Nombres</th>
+										<th>Apellidos</th>
+										<th>Carrera</th>
+										<th>Rol</th>
+										<th>Email</th>
+									</tr>
+								</thead>
+							</table>
 					    </div>
+
 					</div>
 				</div>
 			</section>	
 
 			<!-- Modal -->
-			<div class="modal fade" id="modalEjerc" role="dialog">
-    			<div class="modal-dialog">
+			<div class="modal fade" id="usuarioMDL" role="dialog">
+				<div class="modal-dialog">
 					<div class="modal-content">
 					    <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h3><span class="glyphicon glyphicon-list-alt"></span> Nuevo Usuario </h3>
+					        <h4><span class="glyphicon glyphicon-list-alt"></span> Nuevo Usuario </h4>
 					    </div>
 					    <div class="modal-body">
-					        <div class="input-group">
-							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							    <input id="titulo" type="text" class="form-control input-lg" name="titulo" placeholder="Titulo">
-						    </div>
-						    <br>
-						    <div class="input-group">
-							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							    <textarea id="descrip" class="form-control input-sm" rows="2" placeholder="Descripción"></textarea>
-						    </div>
-						    <br>
-						    <div class="input-group">
-							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							    <input id="autor" type="text" class="form-control input-sm" name="autor" placeholder="Autor">
-						    </div>
-						    <br>  
-						    <div class="input-group">
-							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							    <input id="etiq" type="text" class="form-control input-sm" name="etiq" placeholder="Etiquetas">
-						    </div>	
-						    <br>  
-						    <div class="input-group">
-							    <label for="nivel">Dificultad.</label>
-								<select class="form-control" id="nivel">
-									<option>Principiante.</option>
-								    <option>Medio.</option>
-								    <option>Avanzado.</option>
-								</select>
-						    </div>
-						    <br>
-						    <p id="errorMsj"></p>
-						    <div class="form-group">
-						    	<button class="btn">Agregar</button>
-						    </div>
+					   		<!-- <form action="" onSubmit="enviarDatos(); return false"> -->
+						    	<div class="input-group"> <label for="rol">Roles</label>
+									<select class="form-control" id="rol" onchange="tipoIdentif()">
+										<option>Profesor</option> <option>Ayudante</option> 
+										<option selected>Estudiante</option> <option>Administrador</option>
+									</select>
+							    </div>
+							    <br>
+							    <div class="input-group">
+								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+								    <input id="ident" type="text" class="form-control input-sm" name="ident" placeholder=" Ingrese matrícula">
+							    </div>
+							    <br>
+						        <div class="input-group">
+								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+								    <input id="nombre" type="text" class="form-control input-sm" name="nombre" placeholder="Nombre">
+							    </div>
+							    <br>
+							    <div class="input-group">
+								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+								    <input id="apellido" type="text" class="form-control input-sm" name="apellido" placeholder="Apellido">
+							    </div>
+							    <br>
+							    <div class="input-group">
+								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+								    <input id="carrera" type="text" class="form-control input-sm" name="carrera" placeholder="Carrera">
+							    </div>
+							    <br>
+							    <div class="input-group">
+								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+								    <input id="correo" type="text" class="form-control input-sm" name="correo" placeholder="Email">
+							    </div>
+							    <br>
+							    <div class="input-group">
+								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+								    <input id="pass" type="password" class="form-control input-sm" name="pass" placeholder="Contrasena">
+							    </div>
+							    <br>
+							    <p id="errorMsj"></p>
+							    <div class="form-group">
+							    	<button type="btn" id="btnAdd" class="btn">Agregar</button>
+							    </div>
+							<!-- </form> -->
 					    </div>
 					</div>
-				</div>
+				</div>		
+			</div>
+			<!-- Fin Modal -->
+
+			<!-- Modal -->
+			<div class="modal fade" id="cursoMDL" role="dialog">    			
 			</div>
 			<!-- Fin Modal -->
 

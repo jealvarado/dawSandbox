@@ -15,6 +15,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var reporte = require('./routes/reporte');
 var usuarioAPI = require('./routes/usuarios');
+var ejerciciosAPI = require('./routes/ejercicios');
 var session = require('express-session');
 
 var app = express();
@@ -43,7 +44,7 @@ app.use('/', login);
 app.use('/index', index);
 app.use('/reporte', reporte);
 app.use('/api/usuario', usuarioAPI);
-
+app.use('/api/ejercicios', ejerciciosAPI);
 
 
 // catch 404 and forward to error handler
