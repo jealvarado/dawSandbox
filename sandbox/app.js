@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 // routes
 var login = require('./routes/login');
 var index = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
 var reporte = require('./routes/reporte');
 var usuarioAPI = require('./routes/usuarios');
 var ejerciciosAPI = require('./routes/ejercicios');

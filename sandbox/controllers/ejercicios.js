@@ -5,7 +5,7 @@ var Ejercicio = require('../models/ejercicios');
 function getEjercicio (req,res) {
 	let ejercicioId = req.params.ejercicioId
 
-	Ejercicio.findById(usuarioId, (err, ejercicio) => {
+	Ejercicio.findById(ejercicioId, (err, ejercicio) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
 		if (!ejercicio)
