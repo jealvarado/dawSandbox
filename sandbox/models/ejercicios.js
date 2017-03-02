@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const EjerciciosSchema = Schema({
+	idUsuario: {type: String, required: true},
 	titulo: {type: String, required: true},
 	descripcion: {type: String, required: true},
 	datosEntrada: {type: String, required: true},
@@ -12,4 +13,4 @@ const EjerciciosSchema = Schema({
 	nivel: {type: String, enum: ['Facil','Intermedio','Dificil']}
 })
 
-module.exports = mongoose.model('ejercicios', EjercicioSchema)
+module.exports = mongoose.model('ejercicios', EjerciciosSchema)

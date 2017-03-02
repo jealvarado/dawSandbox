@@ -9,4 +9,4 @@ const CursosSchema = Schema({
 	estudiantes: {type: Array}
 })
 
-mongoose.model('Cursos', CursosSchema)
+module.exports = mongoose.model('Cursos', CursosSchema)

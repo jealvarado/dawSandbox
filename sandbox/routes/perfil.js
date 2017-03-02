@@ -12,8 +12,8 @@ var perfilCtrl = require('../controllers/perfil');
 
 router.get('/:perfilId', perfilCtrl.getPerfil);
 router.post('/', perfilCtrl.savePerfil);
-router.put('/:perfilId', usuarioCtrl.updatePerfil);
-router.delete('/:perfilId', usuarioCtrl.deletePerfil);
+router.put('/:perfilId', perfilCtrl.updatePerfil);
+router.delete('/:perfilId', perfilCtrl.deletePerfil);
 
 
 module.exports = router;

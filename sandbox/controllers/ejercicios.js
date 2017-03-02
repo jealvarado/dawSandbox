@@ -33,6 +33,7 @@ function saveEjercicio (req,res) {
 	console.log(req.body)
 
 	let ejercicio = new Ejercicio()
+	ejercicio.idUsuario = req.body.idUsuario,
 	ejercicio.titulo = req.body.titulo,
 	ejercicio.descripcion = req.body.descripcion,
 	ejercicio.datosEntrada = req.body.datosEntrada,
@@ -40,7 +41,7 @@ function saveEjercicio (req,res) {
 	ejercicio.etiquetas = req.body.etiquetas,
 	ejercicio.nivel = req.body.nivel
 
-	Ejercicio.save( (err, ejercicioStored) => {
+	ejercicio.save( (err, ejercicioStored) => {
 		if (err)
 			res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
 
