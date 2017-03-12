@@ -19,6 +19,7 @@ var ejerciciosAPI = require('./routes/ejercicios');
 var session = require('express-session');
 var perfilAPI = require('./routes/perfil');
 var cursosAPI = require('./routes/cursos');
+var sandbox_prof = require('./routes/sandbox_prof');
 
 
 var app = express();
@@ -50,6 +51,7 @@ app.use('/api/usuario', usuarioAPI);
 app.use('/api/ejercicios/', ejerciciosAPI);
 app.use('/api/cursos', cursosAPI);
 app.use('/api/perfil', perfilAPI);
+app.use('/sandbox_prof', sandbox_prof);
 
 
 // catch 404 and forward to error handler
