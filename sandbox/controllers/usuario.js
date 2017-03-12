@@ -1,6 +1,22 @@
 'use strict'
 
+var nodemailer=require('nodemailer');
+var bCrypt = require('bcrypt-nodejs');
+
 var Usuario = require('../models/usuarios');
+
+var smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+        user: 'registrodaw@gmail.com',
+        pass: 'dawmailer'
+    }
+});
+
+var createHash = function(password){
+	return bCrypt.hashSync(password);
+}
 
 function getUsuario (req,res) {
 	let usuarioId = req.params.usuarioId
@@ -32,6 +48,8 @@ function saveUsuario (req,res) {
 	console.log('POST /api/usuario/')
 	console.log(req.body)
 
+	var pass=createHash(req.body.contrasena);
+
 	let usuario = new Usuario()
 	usuario.nombre = req.body.nombre,
 	usuario.apellido = req.body.apellido,
@@ -43,10 +61,30 @@ function saveUsuario (req,res) {
 	usuario.rol = req.body.rol
 
 	usuario.save( (err, usuarioStored) => {
-		if (err)
+		if (err){
 			res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
-
-		res.status(200).send({ usuario: usuarioStored })
+			console.log(err)
+		}
+		else{
+			var correo= req.body.correo;
+			var Subject="Creacion de cuenta en Sandbox"
+			var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: "; 
+			var mailOptions = {
+				to: correo,
+				subject: Subject,
+				text: contenido
+			}
+			smtpTransport.sendMail(mailOptions, function(error, response){
+				if (error) {
+					console.log(error);
+					res.end('Error al enviar el Email');
+				} else {
+					//console.log('Message sent:'  + response.message);
+					//res.send("Usuario creado");
+					res.status(200).send({ usuario: usuarioStored })
+				}
+			})			
+		}		
 	})
 }
 

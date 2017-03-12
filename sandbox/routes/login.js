@@ -1,6 +1,53 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var LocalStrategy   = require('passport-local').Strategy;
+var User = require('../models/usuarios');
+var bCrypt = require('bcrypt-nodejs');
 
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		//req.flash('error_msg','You are not logged in');
+		res.redirect('/');
+	}
+}
+/*
+router.get('/inicio', function(req, res){
+	if(req.user.Rol=="Administrador"){
+		res.redirect('/users')
+	}if(req.user.Rol=='Profesor'|| req.user.Rol=='Ayudante'){
+		res.redirect('/ejercicios')
+	}if (req.user.Rol=='Estudiante'){
+		res.redirect('/ejerciciosEstudiante');
+	}
+});*/
+
+passport.use(new LocalStrategy(function(username, password, done) {
+	User.findOne({ correo: username }, function(err, user) {
+		if (err) { return done(err); }
+		if (!user) {
+			return done(null, false, { message: 'Incorrect username.' });
+		}		
+		if(!isValidPassword(user, password)){			
+			return done(null, false, {message: 'Contraseña inválida '});
+		} else {
+			return done(null, user);			
+		}		
+	});
+}));
+
+
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+	User.getUserById(id, function(err, user) {
+		done(err, user);
+	});
+});
 
 var validacion = function (req, res, next) {
 	if (!req.session || req.session.rol != 'admin') {
@@ -59,5 +106,16 @@ router.post('/authenticate', function(req, res, next) {
 	});
 
 });
+
+router.post('/',
+	passport.authenticate('local', {failureRedirect:'/',failureFlash: true}),
+  	function(req, res) {
+		res.redirect('/index');
+	}
+);
+
+var isValidPassword = function(user, password){
+	return bCrypt.compareSync(password, user.contrasena);
+}
 
 module.exports = router;
