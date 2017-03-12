@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/fecha', function(req, res, next) {
-  res.render('reporte', { title: 'Express' });
+  res.render('reporte', { title: 'Reporte por Fecha' });
 });
 router.get('/curso', function(req, res, next) {
   res.render('curso_reporte', { title: 'Express' });
