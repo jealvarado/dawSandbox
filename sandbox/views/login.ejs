@@ -8,24 +8,24 @@
 		<!-- <h1><%= title %></h1>
 		<p>Welcome to <%= title %></p> -->
 
-		<form action="/">
+		<form action="/" method="POST">
 			<div class="imgcontainer">
 				<img src="img/img_avatar2.png" alt="Avatar" class="avatar">
 			</div>
 
 			<div class="container">
 				<label><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="uname" required>
+				<input type="text" placeholder="Enter Username" name="username" required>
 
 				<label><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="psw" required>
+				<input type="password" placeholder="Enter Password" name="password" required>
 
 				<!-- <button type="submit">Login</button> -->
 				<!-- <input type="checkbox" checked="checked"> Remember me -->
 			</div>
 
 			<div class="container" style="background-color:#f1f1f1">
-				<button type="btn" id="btnSign">Login</button>
+				<button type="submit" value="Submit">Login</button>
 				<!-- <button type="button" class="cancelbtn">Cancel</button> -->
 				<!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
 			</div>
