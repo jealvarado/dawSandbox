@@ -27,8 +27,16 @@ function mostrarData(clave){
 
 $(document).ready(function() {
     LoadData();
-    mostrarData("58c6426b40b0da153ca2d64f");
+    
 });
+
+
+ function colocarEjercicios(nivel){
+
+ }
+
+
+
 
 
 $(function() {
