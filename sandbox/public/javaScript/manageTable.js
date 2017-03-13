@@ -1,35 +1,4 @@
 
-/*
-var usrTabla;
-
-function cargarUsrTbl(){
-
-	usrTabla = $('#usuariosTabla').DataTable( {
-		// serverSide: true,
-	    ajax: {
-	        url: '/api/usuario/',
-	        type: 'GET',
-	        dataSrc: 'usuarios'
-	    },
-	    columns: [
-	        { data: 'ident' },
-	        { data: 'nombre' },
-	        { data: 'apellido' },
-	        { data: 'carrera' },
-	        { data: 'rol' },
-	        { data: 'correo' }
-	    ]
-	} );
-	
-}
-
-$(document).ready(
-	function() {
-		cargarUsrTbl();
-	}
-);
-*/
-
 function LoadData() {
     var myDataTable = $("#usuariosTabla")
     	.html("<table>\
@@ -46,7 +15,7 @@ function LoadData() {
 					</thead>\
 				</table>");
 
-    $("table",myDataTable).dataTable({
+    var tbl = $("table",myDataTable).DataTable({
     	ajax: {
 	        url: '/api/usuario/',
 	        type: 'GET',
@@ -60,11 +29,33 @@ function LoadData() {
 	        { "data": "rol" },
 	        { "data": "correo" },
 	        { "defaultContent": 
-	        	"<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>"+
-	        	"<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"
+	        	"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#usrEditMDL' >"+
+	        		"<i class='fa fa-pencil-square-o'></i>"+
+	        	"</button>"+
+	        	"<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' >"+
+	        		"<i class='fa fa-trash-o'></i>"+
+	        	"</button>"
 	        }
 	    ]
     });
+
+    obtener_data_editar("#usuariosTabla tbody", tbl);
+}
+
+
+var obtener_data_editar = function(tbody, table){
+	$(tbody).on("click", "button.editar", function(){
+		var data = table.row( $(this).parents("tr") ).data();
+		// console.log(data);
+
+		$('#edit_nomb').val(data.nombre),
+	    $('#edit_apel').val(data.apellido),
+	    $('#edit_ident').val(data.ident),
+	    $('#edit_carr').val(data.carrera),
+	    $('#edit_correo').val(data.correo),
+	    $('#edit_rol').val(data.rol),
+	    $('#edit_id').val(data._id)
+	});
 }
 
 
@@ -119,7 +110,40 @@ $(function() {
 
 	});
 
+
+	$('#btnAct').on('click', function() {
+
+		var formData = {
+			usuarioId	: $('#edit_id').val(),
+	        nombre      : $('#edit_nomb').val(),
+	        apellido    : $('#edit_apel').val(),
+	        ident		: $('#edit_ident').val(),
+	        carrera		: $('#edit_carr').val(),
+	        correo		: $('#edit_correo').val(),
+	        contrasena	: $('#edit_pass').val(),
+	        rol 		: $('#edit_rol').val()
+	    };
+	    console.log(formData);
+
+	    // process the form	       	        
+	    $.ajax({
+	        url 			: '/api/usuario/'+formData.usuarioId,	// the url where we want to POST
+	        type 			: 'PUT', 			// define the type of HTTP verb we want to use (POST for our form)
+		    data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {
+	            console.log(response);
+	            // borrarCampos();
+	            LoadData();
+	            $('#usrEditMDL').modal('hide');	            
+	        }
+		});
+
+	});
+
 });
+
 
 
 function borrarCampos(){
@@ -182,4 +206,37 @@ var data = [
 $('#manageMemberTable').DataTable( {
     data: data
 } );
+*/
+
+
+
+/*
+var usrTabla;
+
+function cargarUsrTbl(){
+
+	usrTabla = $('#usuariosTabla').DataTable( {
+		// serverSide: true,
+	    ajax: {
+	        url: '/api/usuario/',
+	        type: 'GET',
+	        dataSrc: 'usuarios'
+	    },
+	    columns: [
+	        { data: 'ident' },
+	        { data: 'nombre' },
+	        { data: 'apellido' },
+	        { data: 'carrera' },
+	        { data: 'rol' },
+	        { data: 'correo' }
+	    ]
+	} );
+	
+}
+
+$(document).ready(
+	function() {
+		cargarUsrTbl();
+	}
+);
 */
