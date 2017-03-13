@@ -41,6 +41,7 @@ function LoadData() {
 							<th>Carrera</th>\
 							<th>Rol</th>\
 							<th>Email</th>\
+							<th>Accion</th>\
 						</tr>\
 					</thead>\
 				</table>");
@@ -52,12 +53,16 @@ function LoadData() {
 	        dataSrc: 'usuarios'
 	    },
 	    columns: [
-	        { data: 'ident' },
-	        { data: 'nombre' },
-	        { data: 'apellido' },
-	        { data: 'carrera' },
-	        { data: 'rol' },
-	        { data: 'correo' }
+	        { "data": "ident" },
+	        { "data": "nombre" },
+	        { "data": "apellido" },
+	        { "data": "carrera" },
+	        { "data": "rol" },
+	        { "data": "correo" },
+	        { "defaultContent": 
+	        	"<button type='button' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>"+
+	        	"<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"
+	        }
 	    ]
     });
 }

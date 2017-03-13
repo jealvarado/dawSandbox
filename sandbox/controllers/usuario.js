@@ -48,7 +48,7 @@ function saveUsuario (req,res) {
 	console.log('POST /api/usuario/')
 	console.log(req.body)
 
-	var pass=createHash(req.body.contrasena);
+	var pass = createHash(req.body.contrasena);
 
 	let usuario = new Usuario()
 	usuario.nombre = req.body.nombre,
@@ -57,7 +57,7 @@ function saveUsuario (req,res) {
 	usuario.ident = req.body.ident,
 	usuario.carrera = req.body.carrera,
 	usuario.correo = req.body.correo,
-	usuario.contrasena = req.body.contrasena,
+	usuario.contrasena = pass, //req.body.contrasena,
 	usuario.rol = req.body.rol
 
 	usuario.save( (err, usuarioStored) => {
@@ -68,7 +68,7 @@ function saveUsuario (req,res) {
 		else{
 			var correo= req.body.correo;
 			var Subject="Creacion de cuenta en Sandbox"
-			var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: "; 
+			var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + pass; 
 			var mailOptions = {
 				to: correo,
 				subject: Subject,

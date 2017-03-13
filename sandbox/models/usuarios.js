@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 
 var roles = ['Administrador','Profesor','Ayudante','Estudiante']
 var tipo = ['cedula','matricula']
-var email_match = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,"Coloca un email valido"]
+var email_match = [/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,"Coloca un email valido"]
 
 const UsuarioSchema = Schema({
 	nombre: { 
@@ -50,4 +50,9 @@ var User = module.exports = mongoose.model('Usuario', UsuarioSchema)
 
 module.exports.getUserById = function(id, callback){
 	User.findById(id, callback);
+}
+
+module.exports.getUsuarioByCorreo = function(correo, callback){
+	var query = {correo: correo};
+	User.findOne(query, callback);
 }
