@@ -12,6 +12,7 @@ a {
 #btnSign{
     font-size: 20px;
 }
+
 #btnSign:hover{
   background: green;
   background-image: -webkit-linear-gradient(top, green, #37df3e);
@@ -22,6 +23,12 @@ a {
   text-decoration: none;
 
 
+}
+
+.global{
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding: 20px;
 }
 
 /* Bordered form */
@@ -35,12 +42,15 @@ form {
 /* Full-width inputs */
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
+    padding: 14px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
+    border-radius: 10px;
     box-sizing: border-box;
 }
+
+
 
 /* Set a style for all buttons */
 button {
@@ -50,8 +60,11 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
     width: 100%;
+    font-size: 16px;
 }
+
 
 /* Extra style for the cancel button (red) */
 .cancelbtn {
@@ -74,9 +87,13 @@ img.avatar {
 
 /* Add padding to containers */
 .container {
-    padding: 16px;
+    padding: 15px;
 }
 
+.container1:hover {
+         background-color: #45a049;
+         font-size: 15px;
+}
 /* The "Forgot password" text */
 span.psw {
     float: right;
