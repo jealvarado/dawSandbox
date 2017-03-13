@@ -73,28 +73,6 @@
 								      </div>
 								    </div>
 
-								    <div class="panel panel-info">
-								      <div class="panel-heading">
-								        <h4 class="panel-title">
-								          <a data-toggle="collapse" data-parent="#panelColl" href="#collapse2">Ejercicio 2</a>
-								        </h4>
-								      </div>
-								      <div id="collapse2" class="panel-collapse collapse ">
-								        <div class="panel-body">Ingresar nuevo registro en Mis Ejercicios</div>
-								      </div>
-								    </div>
-
-								    <div class="panel panel-info">
-								      <div class="panel-heading">
-								        <h4 class="panel-title">
-								          <a data-toggle="collapse" data-parent="#panelColl" href="#collapse3">Ejercicio 3</a>
-								        </h4>
-								      </div>
-								      <div id="collapse3" class="panel-collapse collapse">
-								        <div class="panel-body">Ingresar nuevo registro en Mis Ejercicios</div>
-								      </div>
-								    </div>
-
 								</div>
 						    <!-- </div> -->
 					    </div>
@@ -107,13 +85,13 @@
 								<div class="row">
 							        <ul class="list-group col-xs-7 col-md-8">
 									    <li class="list-group-item list-group-item-info">
-									    	<a href="#"> <span class="label label-warning">Edit</span> </a>
-											<a href="#"> <span class="label label-danger">Delete</span> </a>
+									    	<a href="#" style="text-decoration:none"> <span class="label label-warning">Edit</span> </a>
+											<a href="#" style="text-decoration:none"> <span class="label label-danger">Delete</span> </a>
 									    	Ejercicio 1
 									    </li>
-									    <li class="list-group-item list-group-item-info">							    	 
-									    	<a href="#"> <span class="label label-warning">Edit</span> </a>
-											<a href="#"> <span class="label label-danger">Delete</span> </a>
+									    <li class="list-group-item list-group-item-info">	 
+									    	<a href="#" style="text-decoration:none"> <span class="label label-warning">Edit</span> </a>
+											<a href="#" style="text-decoration:none"> <span class="label label-danger">Delete</span> </a>
 											Ejercicio 3
 									    </li>						    
 								  	</ul>
@@ -145,7 +123,12 @@
 						    <br>
 						    <div class="input-group">
 							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							    <input id="autor" type="text" class="form-control input-sm" name="autor" placeholder="Autor">
+							    <input id="entrada" type="text" class="form-control input-sm" name="datoEntrada" placeholder="Datos Entrada">
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="salida" type="text" class="form-control input-sm" name="datoSalida" placeholder="Datos Salida">
 						    </div>
 						    <br>  
 						    <div class="input-group">
@@ -154,17 +137,17 @@
 						    </div>	
 						    <br>  
 						    <div class="input-group">
-							    <label for="nivel">Dificultad.</label>
+							    <label for="nivel">Dificultad: </label>
 								<select class="form-control" id="nivel">
-									<option>Principiante.</option>
-								    <option>Medio.</option>
-								    <option>Avanzado.</option>
+									<option>Facil</option>
+								    <option>Intermedio</option>
+								    <option>Dificil</option>
 								</select>
 						    </div>
 						    <br>
 						    <p id="errorMsj"></p>
 						    <div class="form-group">
-						    	<button class="btn">Agregar</button>
+						    	<button id="btnAdd" class="btn">Agregar</button>
 						    </div>
 					    </div>
 					</div>
@@ -191,8 +174,7 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  		<script src="/javaScript/profesor.js"></script>
-  		<script src="/javaScript/lcStorage.js"></script>
+  		<script src="/javaScript/ejercicios.js"></script>
 
 	</body>
 

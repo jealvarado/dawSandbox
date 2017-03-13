@@ -29,7 +29,7 @@ function getEjercicios (req,res) {
 */
 
 function saveEjercicio (req,res) {
-	console.log('POST /api/ejercicio/')
+	console.log('POST /api/ejercicios/')
 	console.log(req.body)
 
 	let ejercicio = new Ejercicio()
