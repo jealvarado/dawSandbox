@@ -4,6 +4,7 @@ var nodemailer=require('nodemailer');
 var bCrypt = require('bcrypt-nodejs');
 
 var Usuario = require('../models/usuarios');
+var Perfil = require('../models/perfil');
 
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
@@ -57,7 +58,7 @@ function saveUsuario (req,res) {
 	usuario.ident = req.body.ident,
 	usuario.carrera = req.body.carrera,
 	usuario.correo = req.body.correo,
-	usuario.contrasena = pass, //req.body.contrasena,
+	usuario.contrasena = req.body.contrasena, // pass,
 	usuario.rol = req.body.rol
 
 	usuario.save( (err, usuarioStored) => {
@@ -79,9 +80,27 @@ function saveUsuario (req,res) {
 					console.log(error);
 					res.end('Error al enviar el Email');
 				} else {
-					//console.log('Message sent:'  + response.message);
-					//res.send("Usuario creado");
-					res.status(200).send({ usuario: usuarioStored })
+					
+					if ( usuarioStored.rol == "Estudiante" ) {
+						let perfil = new Perfil()
+						perfil.idestudiante = usuarioStored._id,
+						perfil.insignia= 'Novato',
+						perfil.insigniaSema = 'Ninguno',
+						perfil.ejFacil = 0,
+						perfil.ejIntermedio = 0,
+						perfil.ejDificil = 0
+
+						console.log(perfil);
+						
+						perfil.save( (err, perfilStored) => {
+							if (err)
+								res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
+
+							res.status(200).send({ usuario: usuarioStored, perfil: perfilStored })
+						})
+					}
+					
+					res.status(200).send({ usuario: usuarioStored });	
 				}
 			})			
 		}		
