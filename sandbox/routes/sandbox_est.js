@@ -9,4 +9,9 @@ router.get('/', function(req, res, next) {
 });
 
 
+router.get('/ejercicio', function(req, res, next) {
+  res.render('sandbox_estd2', { title: 'Ejercicios Estudiantes' });
+});
+
+
 module.exports = router;

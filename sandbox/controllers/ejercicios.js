@@ -27,7 +27,19 @@ function getEjercicios (req,res) {
 	})
 }
 
+/*
+function getEjerciciosXNivel (req,res) {
+	console.log(req.body.nivel);
+	Ejercicio.find({nivel:"Facil"}, (err, ejercicios) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!ejercicios)
+			return res.status(404).send({ message: `No existen ejercicios`})
 
+		res.send(200, { ejercicios })
+	})
+}
+*/
 function saveEjercicio (req,res) {
 	console.log('POST /api/ejercicios/')
 	console.log(req.body)
