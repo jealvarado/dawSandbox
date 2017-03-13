@@ -1,4 +1,5 @@
 
+/*
 var usrTabla;
 
 function cargarUsrTbl(){
@@ -22,12 +23,51 @@ function cargarUsrTbl(){
 	
 }
 
-
 $(document).ready(
 	function() {
 		cargarUsrTbl();
 	}
 );
+*/
+
+function LoadData() {
+    var myDataTable = $("#usuariosTabla")
+    	.html("<table>\
+    				<thead>\
+    					<tr>\
+							<th width='10%'>Identificacion</th>\
+							<th>Nombres</th>\
+							<th>Apellidos</th>\
+							<th>Carrera</th>\
+							<th>Rol</th>\
+							<th>Email</th>\
+						</tr>\
+					</thead>\
+				</table>");
+
+    $("table",myDataTable).dataTable({
+    	ajax: {
+	        url: '/api/usuario/',
+	        type: 'GET',
+	        dataSrc: 'usuarios'
+	    },
+	    columns: [
+	        { data: 'ident' },
+	        { data: 'nombre' },
+	        { data: 'apellido' },
+	        { data: 'carrera' },
+	        { data: 'rol' },
+	        { data: 'correo' }
+	    ]
+    });
+}
+
+$(document).ready(function() {
+    //$("#my-button").click(LoadData);
+    LoadData();
+});
+
+
 
 
 $(function() {
@@ -68,7 +108,8 @@ $(function() {
 	        success 		: function(response) {
 	            console.log(response);
 	            borrarCampos();
-	            $('#usuarioMDL').modal('hide');
+	            LoadData();
+	            $('#usuarioMDL').modal('hide');	            
 	        }
 		});
 
