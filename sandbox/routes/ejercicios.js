@@ -7,6 +7,7 @@ var ejercicioCtrl = require('../controllers/ejercicios');
 
 
 router.get('/:ejercicioId', ejercicioCtrl.getEjercicio);
+router.get('/', ejercicioCtrl.getEjercicios);
 router.post('/', ejercicioCtrl.saveEjercicio);
 router.put('/:ejercicioId', ejercicioCtrl.updateEjercicio);
 router.delete('/:ejercicioId', ejercicioCtrl.deleteEjercicio);
