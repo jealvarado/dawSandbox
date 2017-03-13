@@ -67,12 +67,11 @@ function LoadData() {
     });
 }
 
+
 $(document).ready(function() {
     //$("#my-button").click(LoadData);
     LoadData();
 });
-
-
 
 
 $(function() {
