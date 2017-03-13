@@ -6,12 +6,9 @@ function cargarP(){
 	$("#lis").append($("<li>",{"id":"avaz"}).append($("<a>",{"href":"#"}).text("Avanzado").click(cargarA)));
 	$("#cuer").empty();
 	$("#cuer").append("<h4><small>Intermedio</small></h4><hr style=\"margin-bottom:20px;\">");
-	arch.forEach(function(item){
-		if(item.difi == "Principiante"){
-			agregarP(item);
-		}
-	});
+	obtenerEjercicios("Facil")	
 }
+
 function cargarM(){
 	$("#lis").empty();
 	$("#lis").append($("<li>",{"id":"prin"}).append($("<a>",{"href":"#"}).text("Principiante").click(cargarP)));
@@ -19,12 +16,9 @@ function cargarM(){
 	$("#lis").append($("<li>",{"id":"avaz"}).append($("<a>",{"href":"#"}).text("Avanzado").click(cargarA)));
 	$("#cuer").empty();
 	$("#cuer").append("<h4><small>Intermedio</small></h4><hr style=\"margin-bottom:20px;\">");
-	arch.forEach(function(item){
-		if(item.difi == "Intermedio"){
-			agregarI(item);
-		}
-	});
+	obtenerEjercicios("Intermedio")
 }
+
 function cargarA(){
 	$("#lis").empty();
 	$("#lis").append($("<li>",{"id":"prin"}).append($("<a>",{"href":"#"}).text("Principiante").click(cargarP)));
@@ -32,11 +26,7 @@ function cargarA(){
 	$("#lis").append($("<li>",{"class":"active","id":"avaz"}).append($("<a>",{"href":"#"}).text("Avanzado")));
 	$("#cuer").empty();
 	$("#cuer").append("<h4><small>Intermedio</small></h4><hr style=\"margin-bottom:20px;\">");
-	arch.forEach(function(item){
-		if(item.difi == "Avanzado"){
-			agregarA(item);
-		}
-	});
+	obtenerEjercicios("Dificil")
 }
 
 function agregarP(item){
@@ -82,19 +72,17 @@ function agregarI(item){
 						$('<a>').attr({
 							'data-toggle':'collapse',
 							'data-parent':'#accordion',
-							'href':'#collapse' + item.id
+							'href':'#collapse' + item._id
 						}).append("<span style=\"margin-right: 2%;font-weight: bold;\">"+ item.titulo)
 					)
 					.append($("<a>",{"href":"sb_estd2.html"}).append($("<button>",{"class":"btn btn-warning","style":"float:right"}).text("Tomar")))
 				),
 				$('<div>').attr({
 							'class':'panel-collapse collapse',
-							'id':'collapse' + item.id
+							'id':'collapse' + item._id
 							}).append( 
-								$('<div>').attr({"class":"panel-body","id":item.id}).append(
-									"Autor: " + item.autor + "<br>" +
-									"Descripcion: " + item.descri + "<br>" +
-									"<strong>Resuelto por: " + item.nEstd +"</strong><br><br>"
+								$('<div>').attr({"class":"panel-body","id":item._id}).append(
+									"Descripcion: " + item.descripcion + "<br><br>"
 								)
 							)
 			)
@@ -102,10 +90,10 @@ function agregarI(item){
 	)
 	
 	item.etiquetas.split(",").forEach(function(o){
-		$("#"+item.id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
+		$("#"+item._id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
 	})
 	
-	var i = item.id;
+	var i = item._id;
 	localStorage.setItem("id",i);
 }
 
@@ -118,19 +106,17 @@ function agregarA(item){
 						$('<a>').attr({
 							'data-toggle':'collapse',
 							'data-parent':'#accordion',
-							'href':'#collapse' + item.id
+							'href':'#collapse' + item._id
 						}).append("<span style=\"margin-right: 2%;font-weight: bold;\">"+ item.titulo)
 					)
 					.append($("<a>",{"href":"sb_estd2.html"}).append($("<button>",{"class":"btn btn-danger","style":"float:right"}).text("Tomar")))
 				),
 				$('<div>').attr({
 							'class':'panel-collapse collapse',
-							'id':'collapse' + item.id
+							'id':'collapse' + item._id
 							}).append( 
 								$('<div>').attr({"class":"panel-body","id":item.id}).append(
-									"Autor: " + item.autor + "<br>" +
-									"Descripcion: " + item.descri + "<br>" +
-									"<strong>Resuelto por: " + item.nEstd +"</strong><br><br>"
+									"Descripcion: " + item.descripcion + "<br><br>"
 								)
 							)
 			)
@@ -138,29 +124,18 @@ function agregarA(item){
 	)
 	
 	item.etiquetas.split(",").forEach(function(o){
-		$("#"+item.id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
+		$("#"+item._id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
 	})
 	
-	var i = item.id;
+	var i = item._id;
 	localStorage.setItem("id",i);
 }
 
 $(document).ready(function(){
 	obtenerEjercicios("Facil");
-	/*
-	url = "json/ejercicios.json";
-	$.getJSON(url,function(resp){
-		arch = resp;
-		arch.forEach(function(item){
-			if(item.difi == "Principiante"){
-					agregarP(item);
-			}
-		})
-	})
 	$("#prin").click(cargarP);
 	$("#med").click(cargarM);
 	$("#avaz").click(cargarA);
-	*/
 })
 
 
@@ -177,7 +152,3 @@ function obtenerEjercicios(nivel){
         }
     })
 }
-
-
-
-
