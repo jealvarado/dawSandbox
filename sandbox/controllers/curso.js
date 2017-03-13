@@ -16,6 +16,17 @@ function getCurso (req,res) {
 }
 
 
+function getCursos (req,res) {
+	Curso.find({}, (err, cursos) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!cursos)
+			return res.status(404).send({ message: `No existen cursos`})
+
+		res.status(200).send({ cursos })
+	})
+}
+
 
 function saveCurso (req,res) {
 	console.log('POST /api/cursos/')
@@ -67,6 +78,7 @@ function deleteCurso (req,res) {
 
 module.exports = {
 	getCurso,
+	getCursos,
 	saveCurso,
 	updateCurso,
 	deleteCurso

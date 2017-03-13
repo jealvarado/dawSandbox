@@ -83,14 +83,15 @@ router.post('/authenticate', function(req, res, next) {
 	res.send('Usuario o contraseña erronea');
 	*/
 	//find the user
-	User.findOne({ name: req.body.uname }, function(err, user) {
-
+	User.findOne({ name: req.body.username }, function(err, user) {
+		
 		if (err) throw err;
 
 		if (!user) {
+			console.log(req.body.username);
+			console.log(user);
 			res.json({ success: false, message: 'Authentication failed. User not found.' });
 		} else if (user) {
-
 			// check if password matches
 			if (user.password != req.body.psw) {
 				res.json({ success: false, message: 'Authentication failed. Wrong password.' });

@@ -5,7 +5,7 @@ var Perfil = require('../models/perfil');
 function getPerfil (req,res) {
 	let perfilId = req.params.perfilId
 
-	Perfil.findById(usuarioId, (err, perfil) => {
+	Perfil.findById(perfilId, (err, perfil) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
 		if (!perfil)
@@ -22,13 +22,12 @@ function savePerfil (req,res) {
 	console.log(req.body)
 
 	let perfil = new Perfil()
-	perfil.idEstudiante = req.body.idEstudiante,
+	perfil.idestudiante = req.body.idestudiante,
 	perfil.insignia= req.body.insignia,
 	perfil.insigniaSema = req.body.insigniaSema,
 	perfil.ejFacil = req.body.ejFacil,
 	perfil.ejIntermedio = req.body.ejIntermedio,
-	perfil.ejDificil = req.body.ejDificil,
-	perfil.resuelto = req.body.resuelto,
+	perfil.ejDificil = req.body.ejDificil
 
 	perfil.save( (err, perfilStored) => {
 		if (err)
