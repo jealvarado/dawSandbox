@@ -1,0 +1,60 @@
+
+/***************************************
+************* SandBox Prof *************
+****************************************/
+
+
+
+/***************************************/
+
+#seccion1 .panel-group {
+	margin-top: 2%;
+	padding-left: 0px;
+}
+
+
+#seccion2 .list-group {
+	margin-top: 2%;
+	margin-left: 1.5%;
+}
+
+
+.btn-sm {
+	box-shadow: 1px 4px 5px #000000; 
+}
+
+
+#secciones {
+	padding-left: 0%;
+}
+
+
+#modalEjerc .modal-body {
+	padding: 30px 40px;
+}
+
+/*
+#new_ejerc button {
+	margin-left: 1.5%;
+}
+
+
+#seccion1 p {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+
+#seccion1 p:nth-child(even) {
+    background: lavender;
+}
+
+
+#seccion1 p:nth-child(odd) {
+    background: gainsboro;
+}
+*/
+
+/***************************************
+****************************************/

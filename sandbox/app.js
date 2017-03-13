@@ -19,6 +19,8 @@ var ejerciciosAPI = require('./routes/ejercicios');
 var session = require('express-session');
 var perfilAPI = require('./routes/perfil');
 var cursosAPI = require('./routes/cursos');
+var sandbox_prof = require('./routes/sandbox_prof');
+var sandbox_est = require('./routes/sandbox_est');
 
 
 var app = express();
@@ -41,7 +43,14 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
-
+// Configuring Passport
+var passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+ // Using the flash middleware provided by connect-flash to store messages in session
+ // and displaying in templates
+var flash = require('connect-flash');
+app.use(flash());
 
 app.use('/', login);
 app.use('/index', index);
@@ -50,6 +59,8 @@ app.use('/api/usuario', usuarioAPI);
 app.use('/api/ejercicios/', ejerciciosAPI);
 app.use('/api/cursos', cursosAPI);
 app.use('/api/perfil', perfilAPI);
+app.use('/sandbox_prof', sandbox_prof);
+app.use('/sandbox_est', sandbox_est);
 
 
 // catch 404 and forward to error handler

@@ -1,26 +1,98 @@
-<html>
-<head>
-	<title>Módulo de Reportes</title>
-	<meta charset="UTF-8">
-</head>
-<body>
+<!DOCTYPE html>
 
-<div action="" method="post">
-	<input  id ="fechaInicio" type="date">
-	<input id ="fechaFin" type="date">
-	<button id ="enviar">Enviar</button>
-</div>
+<html lang="es">
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js">
-</script>
-<script src="https://code.highcharts.com/highcharts.js">
-</script>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+				
+		<link rel="stylesheet" href="/stylesheets/index_style00.css">
+		<link rel="stylesheet" href="/stylesheets/index_style01.css">
+		<link rel="stylesheet" href="/stylesheets/style_reporte.css">
+		<!--<link rel="stylesheet" href="/stylesheets/style.css">-->
 
-<script src="/javaScript/reporte.js">
-</script>
+	</head>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+	<body>
+
+		<div class="container">
+			<header>
+				<nav id="barra" class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+								<span class="sr-only">Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="index.html">
+								<img src="/img/logo.png" alt="Fundamentos de Programación">
+        					</a>
+						</div>
+
+						<div class="collapse navbar-collapse" id="navbar-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li  class="active"><a href="#">Administracion</a></li>
+								<li> <a href="#">Reportes</a> </li>	
+							</ul>
+						</div>
+
+					</div>
+				</nav>
+			</header>			
+			
+			<section class="container-fluid">
+				<div class="row">
+					<ul class="nav nav-tabs">
+					    <li class="active"><a data-toggle="tab" href="#seccion1">Usuarios</a></li>
+					    <li><a data-toggle="tab" href="#seccion2">Cursos</a></li>
+					</ul>
 
 
-</body>
+				</div>
+			<br>
+			</section>	
+				
+			<section>
+				<div action="" method="post">
+					<input  id ="fechaInicio" type="date"/>
+					<input id ="fechaFin" type="date"/>
+					<button id ="enviar">Buscar reporte</button>
+				</div>
+			</section>
+
+			<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+			<footer>
+				<div id="sub-footer">
+					<div class="container2">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="copyright">
+									<P>Guayaquil, Ecuador</p>
+									<p>© Escuela Superior Politecnica del Litoral. All right reserved.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+
+		
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="/javaScript/reporte.js"></script>
+
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  		
+
+	</body>
+
 </html>

@@ -9,8 +9,7 @@ const PerfilSchema = Schema({
 	insigniaSema: {type: String, enum: ['Indestructible','Duro de Matar','Rapido y Furioso']},
 	ejFacil: {type: Number, required: true},
 	ejIntermedio: {type: Number, required: true},
-	ejDificil: {type: Number, required: true},
-	resueltos: {type: Array}
+	ejDificil: {type: Number, required: true}
 })
 
 module.exports = mongoose.model('Perfil', PerfilSchema)
