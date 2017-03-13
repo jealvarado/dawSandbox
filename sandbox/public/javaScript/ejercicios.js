@@ -1,6 +1,35 @@
+function LoadData() {
+    $.ajax({
+        url:'/api/ejercicios/',
+        type: 'GET',
+        success:function(ejercicio){
+            console.log(ejercicio);
+            ejercicio.ejercicios.forEach(function(i){
+              	$('#panelColl').append($('<div>',{"class":"panel panel-info","id":''+i._id}).append($('<div>',{"class":"panel-heading","id":'c'+i._id}).append(i.titulo+'	')));
+               	$('#'+i._id).append($('<div>',{"class":"panel-body"}).append(i.descripcion));
+               	$('#c'+i._id).append($('<button>',{"type":"button","class":"btn btn-warning","onclick":"mostrarData(\""+i._id+"\")"}).append("Editar"));
+               	$('#c'+i._id).append(' ');
+               	$('#c'+i._id).append($('<button>',{"type":"button","class":"btn btn-danger","id":"eli"}).append("Borrar"));
+            })
+        }
+    })
+}
+
+function mostrarData(clave){
+	$.ajax({
+        url:'/api/ejercicios/'+clave,
+        type: 'GET',
+        success:function(ejercicio){
+            console.log(ejercicio);
+        }
+    })
+}
+
 $(document).ready(function() {
-    
+    LoadData();
+    mostrarData("58c6426b40b0da153ca2d64f");
 });
+
 
 $(function() {
 
@@ -33,7 +62,7 @@ $(function() {
 	        success 		: function(response) {
 	            console.log(response);
 	            borrarCampos();
-	            //LoadData();
+	            LoadData();
 	            $('#modalEjerc').modal('hide');	            
 	        }
 		});
@@ -45,8 +74,8 @@ $(function() {
 
 function borrarCampos(){
 	$('input[name=titulo]').val('');
-	$('input[name=descrip]').val('');
-	$('#nivel').val('principiante');
+	$('#descrip').val('');
+	$('#nivel').val('Facil');
 	$('input[name=datoEntrada]').val('');
 	$('input[name=datoSalida]').val('');
 	$('input[name=etiq]').val('');

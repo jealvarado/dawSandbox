@@ -15,18 +15,18 @@ function getEjercicio (req,res) {
 	})
 }
 
-/*
+
 function getEjercicios (req,res) {
-	Usuario.find({}, (err, usuarios) => {
+	Ejercicio.find({}, (err, ejercicios) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
-		if (!usuarios)
-			return res.status(404).send({ message: `No existen usuarios`})
+		if (!ejercicios)
+			return res.status(404).send({ message: `No existen ejercicios`})
 
-		res.send(200, { usuarios })
+		res.send(200, { ejercicios })
 	})
 }
-*/
+
 
 function saveEjercicio (req,res) {
 	console.log('POST /api/ejercicios/')
@@ -82,6 +82,7 @@ function deleteEjercicio (req,res) {
 
 module.exports = {
 	getEjercicio,
+	getEjercicios,
 	saveEjercicio,
 	updateEjercicio,
 	deleteEjercicio
