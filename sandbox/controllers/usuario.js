@@ -81,24 +81,26 @@ function saveUsuario (req,res) {
 					res.end('Error al enviar el Email');
 				} else {
 					
-					let perfil = new Perfil()
-					perfil.idestudiante = usuarioStored._id,
-					perfil.insignia= 'Novato',
-					perfil.insigniaSema = 'Ninguno',
-					perfil.ejFacil = 0,
-					perfil.ejIntermedio = 0,
-					perfil.ejDificil = 0
+					if ( usuarioStored.rol == "Estudiante" ) {
+						let perfil = new Perfil()
+						perfil.idestudiante = usuarioStored._id,
+						perfil.insignia= 'Novato',
+						perfil.insigniaSema = 'Ninguno',
+						perfil.ejFacil = 0,
+						perfil.ejIntermedio = 0,
+						perfil.ejDificil = 0
 
-					console.log(perfil);
+						console.log(perfil);
+						
+						perfil.save( (err, perfilStored) => {
+							if (err)
+								res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
+
+							res.status(200).send({ usuario: usuarioStored, perfil: perfilStored })
+						})
+					}
 					
-					perfil.save( (err, perfilStored) => {
-						if (err)
-							res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
-
-						res.status(200).send({ usuario: usuarioStored, perfil: perfilStored })
-					})	
-
-					// res.status(200).send({ usuario: usuarioStored });	
+					res.status(200).send({ usuario: usuarioStored });	
 				}
 			})			
 		}		
