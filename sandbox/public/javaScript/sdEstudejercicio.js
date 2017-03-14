@@ -1,3 +1,4 @@
+//var PythonShell = require('python-shell');
 
 function colocar(ar){
 	$("#cuer").empty();
@@ -13,10 +14,9 @@ function colocar(ar){
 	$("#cuer").append($("<p>").text(ar.datosSalida));
 	$("#cuer").append("<br>");
 	$("#cuer").append($("<h4>").text("Solución:"));
-	$("#cuer").append($("<form>",{"class":"form-group	"})
-		.append($("<input>",{"id":"arhivo","type":"file"}).text("Arhivo")));
+	$("#cuer").append($("<form>",{"class":"form-group"}).append($("<input>",{"id":"arhivo","type":"file"}).text("Arhivo")));
 	$("#cuer").append("<br>");	
-	$("#cuer").append($("<button>",{"type":"button","class":"btn btn-info","data-toggle":"modal","data-target":"#myModal","style":"margin-right: 2%;"}).text("Enviar"));
+	$("#cuer").append($("<button>",{"type":"button","class":"btn btn-info","onclick":"enviar(\""+ar.datosEntrada+"\",\""+ar.datosSalida+"\")","data-toggle":"modal","data-target":"#myModal","style":"margin-right: 2%;"}).text("Enviar"));
 	$("#cuer").append($("<a>",{"href":"/sandbox_est/"}).append($("<button>",{"class":"btn btn-danger"}).text("Cerrar")));
 }
 
@@ -24,6 +24,12 @@ $(document).ready(function(){
 	var a = window.location.href.split("=");
 	mostrarData(a[1]);
 })
+
+function enviar(entr, sald){
+	console.log(entr);
+	console.log(sald);
+	console.log($('#archivo').files);
+}
 
 function mostrarData(clave){
 	$.ajax({
