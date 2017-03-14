@@ -62,6 +62,16 @@ function getUsuariosProf (req,res,next) {
 	})
 }
 
+function getUsuariosEstud (req,res,next) {
+	Usuario.find({ rol : 'Estudiante' }, (err, usuarios) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!usuarios)
+			return res.status(404).send({ message: `No existen usuarios`})
+
+		res.status(200).send({ usuarios })
+	})
+}
 
 /************/
 /* INSERTAR */
@@ -175,6 +185,7 @@ module.exports = {
 	getUsuario,
 	getUsuarios,
 	getUsuariosProf,
+	getUsuariosEstud,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario

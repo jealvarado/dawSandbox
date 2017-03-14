@@ -1,6 +1,66 @@
+var dictCursos={};
+var cursos=[];
+var perfil;
+var estudiantes;
+var estPerfil=[];
+var datosCar
+
+
+function consegirPerfiles(){
+    $.ajax({
+        url:'/api/perfil/',
+        type: 'GET',
+        success:function(res){
+            perfil = res.perfiles;
+            $.ajax({
+                url:'/api/usuario/estud',
+                type: 'GET',
+                success:function(resp) {
+                    estudiantes=resp.usuarios;
+                    perfil.forEach(function (p) {
+                        estudiantes.forEach(function (e) {
+                            if (p.idestudiante==e._id) {
+                                var total=p.ejDificil+p.ejFacil+p.ejIntermedio
+                                var ps={
+                                    curso:e.paralelo,
+                                    ejercicios:total
+                                }
+                                estPerfil.push(ps);
+                            }
+                        })
+                    });
+                    estPerfil.forEach(function(ep) {
+                        if (dictCursos[ep.curso]) {
+                            dictCursos[ep.curso]+=ep.ejercicios;
+                        }
+                        else{
+                            dictCursos[ep.curso]=ep.ejercicios;
+                            cursos.push(ep.curso)
+                        }
+                    })
+                    var data = [];
+                    cursos.forEach(function(c) {
+                        var d={
+                            "paralelo":c,
+                            "ejercicios":dictCursos[c]
+                        }
+                        data.push(d);
+                    });
+                    datosCar=data;
+                    generarGrafico({data:data});
+                }
+            })
+        }
+    })
+}
+
+
 $(document).ready(function(){
-    var url = "json/curso.json" // esta url debe ser generada con la fecha 
-        $.getJSON(url, function(resp){
+    consegirPerfiles();
+});        
+        
+
+function generarGrafico(resp){
             r=resp;
             //tutorial del grafico 
             var datos = []
@@ -40,6 +100,4 @@ $(document).ready(function(){
                     data:datos
                     }]
                 });
-            });
-});        
-        
+}
