@@ -29,10 +29,10 @@ function LoadData() {
 	        { "data": "rol" },
 	        { "data": "correo" },
 	        { "defaultContent": 
-	        	"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#usrEditMDL' >"+
+	        	"<button type='button' class='editarUsr btn btn-primary' data-toggle='modal' data-target='#usrEditMDL' >"+
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"+
-	        	"<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' >"+
+	        	"<button type='button' class='eliminarUsr btn btn-danger' data-toggle='modal' data-target='#usrElitMDL' >"+
 	        		"<i class='fa fa-trash-o'></i>"+
 	        	"</button>"
 	        }
@@ -44,7 +44,8 @@ function LoadData() {
 
 
 var obtener_data_editar = function(tbody, table){
-	$(tbody).on("click", "button.editar", function(){
+
+	$(tbody).on("click", "button.editarUsr", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
 
@@ -56,6 +57,19 @@ var obtener_data_editar = function(tbody, table){
 	    $('#edit_rol').val(data.rol),
 	    $('#edit_id').val(data._id)
 	});
+
+	$(tbody).on("click", "button.eliminarUsr", function(){
+		var data = table.row( $(this).parents("tr") ).data();
+		// console.log(data);
+		
+		$('#eli_rol').text(data.rol)
+		$('#eli_ident').text( data.ident ),
+		$('#eli_nomb').text( data.nombre +" "+ data.apellido )
+		$('#eli_carr').text(data.carrera),
+	    $('#eli_correo').text(data.correo),		
+	    $('#eli_id').val(data._id)
+	});
+
 }
 
 
@@ -140,6 +154,31 @@ $(function() {
 	        }
 		});
 
+	});
+
+
+	$('#btnElim').on('click', function() {
+		
+		var formData = {
+			usuarioId	: $('#eli_id').val()
+	    };
+	    // console.log(formData);
+	    
+	    // process the form	       	        
+	    $.ajax({
+	        url 			: '/api/usuario/'+formData.usuarioId,	// the url where we want to POST
+	        type 			: 'DELETE', 			// define the type of HTTP verb we want to use (POST for our form)
+		    data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {
+	            console.log(response);
+	            // borrarCampos();
+	            LoadData();
+	            $('#usrElitMDL').modal('hide');	            
+	        }
+		});
+		
 	});
 
 });

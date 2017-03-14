@@ -9,10 +9,10 @@ var usuarioCtrl = require('../controllers/usuario');
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
 // });
-
+router.get('/prof', usuarioCtrl.getUsuariosProf);
+router.get('/estud', usuarioCtrl.getUsuariosEstud);
 router.get('/:usuarioId', usuarioCtrl.getUsuario);
 router.get('/', usuarioCtrl.getUsuarios);
-router.get('/prof', usuarioCtrl.getUsuariosProf);
 router.post('/', usuarioCtrl.saveUsuario);
 router.put('/:usuarioId', usuarioCtrl.updateUsuario);
 router.delete('/:usuarioId', usuarioCtrl.deleteUsuario);

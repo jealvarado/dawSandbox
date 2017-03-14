@@ -33,6 +33,20 @@ background-color:  #f1f1f1;
 }
 
 
+#usrElitMDL .input-group span {
+	text-indent: 30px;
+	text-decoration: underline;
+	font-style: oblique;
+	font-weight: bold;
+}
+
+#usrElitMDL .input-group p {
+	text-indent: 70px;
+	font-weight: bold;
+}
+
+
+
 /*
 #new_ejerc button {
 	margin-left: 1.5%;

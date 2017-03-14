@@ -62,6 +62,18 @@ function getUsuariosProf (req,res,next) {
 }
 
 
+function getUsuariosEstud (req,res,next) {
+	Usuario.find({ rol : 'Estudiante' }, (err, usuarios) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!usuarios)
+			return res.status(404).send({ message: `No existen usuarios`})
+
+		res.status(200).send({ usuarios })
+	})
+}
+
+
 /************/
 /* INSERTAR */
 /************/
@@ -79,7 +91,7 @@ function saveUsuario (req,res) {
 	usuario.ident = req.body.ident,
 	usuario.carrera = req.body.carrera,
 	usuario.correo = req.body.correo,
-	usuario.contrasena = req.body.contrasena, // pass,
+	usuario.contrasena =  pass,  // req.body.contrasena,
 	usuario.rol = req.body.rol
 	
 	if ( req.body.rol == "Estudiante") 	usuario.paralelo = "00"
@@ -93,7 +105,7 @@ function saveUsuario (req,res) {
 		else{
 			var correo= req.body.correo;
 			var Subject="Creacion de cuenta en Sandbox"
-			var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + pass; 
+			var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + req.body.contrasena; 
 			var mailOptions = {
 				to: correo,
 				subject: Subject,
@@ -174,6 +186,7 @@ module.exports = {
 	getUsuario,
 	getUsuarios,
 	getUsuariosProf,
+	getUsuariosEstud,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario
