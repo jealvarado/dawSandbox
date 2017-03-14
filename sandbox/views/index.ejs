@@ -196,6 +196,38 @@
 			</div>
 			<!-- Fin Modal Usr Editar-->
 
+
+			<!-- Modal Usr Eliminar-->
+			<div class="modal fade" id="usrElitMDL" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					    <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4><span class="glyphicon glyphicon-list-alt"></span> Eliminar Usuario </h4>
+					    </div>
+					    <div class="modal-body">
+
+					    	<p> Seguro desea eliminar el usuario...?</p>
+					    	
+					        <div class="input-group">
+					        	<span> Nombre: </span><p id="eli_nomb"></p>
+						    </div>
+						    <div class="input-group">
+						    	<span> Correo: </span><p id="eli_correo"></p>
+						    </div>
+						    <p id="eli_id" visible="false"></p>
+						    <br>						    
+						    <p id="eliMsj"></p>
+						    <div class="form-group">
+						    	<button type="btn" id="btnElim" class="button block-center" >Eliminar</button>
+						    </div>
+					    </div>
+					</div>
+				</div>		
+			</div>
+			<!-- Fin Modal Usr Eliminar-->
+
+
 			<!-- Modal Usr Curso-->
 			<div class="modal fade" id="cursoMDL" role="dialog">
 				<div class="modal-dialog">
@@ -207,9 +239,16 @@
 					    <div class="modal-body">
 						    <div class="input-group">
 							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-							    <input id="ident" type="text" class="form-control input-sm" name="ident" placeholder=" Ingrese paralelo">
+							    <input id="paraleloCurso" type="text" class="form-control input-sm" name="paralelo" placeholder=" Ingrese paralelo ">
 						    </div>						    						    
 						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="profCurso" type="text" class="form-control input-sm" name="profesor" placeholder=" Profesor ">
+						    </div>
+						    <p id="profCurso_id" visible="false"></p>						    						    
+						    <br>
+						    <div id="profTabla"></div>
 						    <p id="saveMsj"></p>
 						    <div class="form-group">
 						    	<button type="btn" id="btnAdd" class="btn">Agregar</button>
