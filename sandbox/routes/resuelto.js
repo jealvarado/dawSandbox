@@ -11,6 +11,7 @@ router.get('/', resueltoCtrl.getResueltos);
 router.post('/', resueltoCtrl.saveResuelto);
 router.put('/:resueltoId', resueltoCtrl.updateResuelto);
 router.delete('/:resueltoId', resueltoCtrl.deleteResuelto);
+router.post('/resueltosPorFecha', resueltoCtrl.resueltosPorFecha);
 
 
 module.exports = router;
