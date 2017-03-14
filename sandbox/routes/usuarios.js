@@ -12,6 +12,7 @@ var usuarioCtrl = require('../controllers/usuario');
 
 router.get('/:usuarioId', usuarioCtrl.getUsuario);
 router.get('/', usuarioCtrl.getUsuarios);
+router.get('/prof', usuarioCtrl.getUsuariosProf);
 router.post('/', usuarioCtrl.saveUsuario);
 router.put('/:usuarioId', usuarioCtrl.updateUsuario);
 router.delete('/:usuarioId', usuarioCtrl.deleteUsuario);

@@ -19,6 +19,11 @@ var createHash = function(password){
 	return bCrypt.hashSync(password);
 }
 
+
+/*************/
+/* CONSULTAR */
+/*************/
+
 function getUsuario (req,res) {
 	let usuarioId = req.params.usuarioId
 
@@ -45,6 +50,22 @@ function getUsuarios (req,res) {
 }
 
 
+function getUsuariosProf (req,res,next) {
+	Usuario.find({ rol : 'Profesor' }, (err, usuarios) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!usuarios)
+			return res.status(404).send({ message: `No existen usuarios`})
+
+		res.status(200).send({ usuarios })
+	})
+}
+
+
+/************/
+/* INSERTAR */
+/************/
+
 function saveUsuario (req,res) {
 	console.log('POST /api/usuario/')
 	console.log(req.body)
@@ -59,8 +80,10 @@ function saveUsuario (req,res) {
 	usuario.carrera = req.body.carrera,
 	usuario.correo = req.body.correo,
 	usuario.contrasena = req.body.contrasena, // pass,
-	usuario.rol = req.body.rol,
-	usuario.paralelo = "00"
+	usuario.rol = req.body.rol
+	
+	if ( req.body.rol == "Estudiante") 	usuario.paralelo = "00"
+	else	usuario.paralelo = ""
 
 	usuario.save( (err, usuarioStored) => {
 		if (err){
@@ -109,6 +132,10 @@ function saveUsuario (req,res) {
 }
 
 
+/**************/
+/* ACTUALIZAR */
+/**************/
+
 function updateUsuario (req,res) {
 	let usuarioId = req.params.usuarioId
 	let update = req.body
@@ -121,6 +148,10 @@ function updateUsuario (req,res) {
 	})
 }
 
+
+/************/
+/* ELIMINAR */
+/************/
 
 function deleteUsuario (req,res) {
 	let usuarioId = req.params.usuarioId
@@ -142,6 +173,7 @@ function deleteUsuario (req,res) {
 module.exports = {
 	getUsuario,
 	getUsuarios,
+	getUsuariosProf,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario
