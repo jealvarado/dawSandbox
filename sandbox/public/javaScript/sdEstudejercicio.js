@@ -22,6 +22,7 @@ function colocar(ar){
 }
 
 $(document).ready(function(){
+	console.log(id);
 	url = "json/ejercicios.json";
 	$.getJSON(url,function(resp){
 		arch = resp[id-1];
