@@ -33,10 +33,10 @@ function saveResuelto (req,res) {
 	console.log(req.body)
 
 	let resuelto = new Resuelto()
-	resuelto.idUsuario = req.body.idUsuario,
-	resuelto.idEjercicio = req.body.idEjercicio,
-	resuelto.Fecha = req.body.Fecha
-	
+	resuelto.idUsuario = req.body.idUsuario;
+	resuelto.idEjercicio = req.body.idEjercicio;
+	resuelto.fecha = new Date("<" + req.body.Fecha + ">").toISOString();
+
 	resuelto.save( (err, resueltoStored) => {
 		if (err)
 			res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
@@ -75,11 +75,40 @@ function deleteResuelto (req,res) {
 	})
 }
 
+function resueltosPorFecha(req, res) {
+
+	var fechaInicio = new Date("<" + req.body.fechaInicio + ">").toISOString();
+	var fechaFin = new Date("<" + req.body.fechaFin + ">").toISOString();
+
+	Resuelto.find({ $and: [ {fecha: {$gte: fechaInicio}}, {fecha: {$lte: fechaFin}} ]}, (err, resueltos) => {
+		if (err) {
+			console.log("error");
+			res.send("error");
+		} else {
+			var groupBy = function (miarray, prop) {
+			    return miarray.reduce(function(groups, item) {
+			        var val = item[prop];
+			        groups[val] = groups[val] || {fecha: item.fecha, ejercicios: 0};
+			        groups[val].ejercicios ++;
+			        return groups;
+			    }, {});
+			}
+			var datos = groupBy(resueltos, 'fecha');
+			var data = {data:[]};
+			for (var key in datos) {
+				data.data.push(datos[key]);
+			}
+			res.json(data);
+		}
+	})
+}
+
 
 module.exports = {
 	getResuelto,
 	getResueltos,
 	saveResuelto,
 	updateResuelto,
-	deleteResuelto
+	deleteResuelto,
+	resueltosPorFecha
 }
