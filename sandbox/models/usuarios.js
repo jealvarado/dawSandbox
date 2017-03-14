@@ -42,6 +42,10 @@ const UsuarioSchema = Schema({
 	rol: { 
 		type: String, 
 		enum: { values: roles, message: "Rol no valido" } 
+	},
+	paralelo: {
+		type: String, 
+		maxlength: [2, "Maximo 2 caracteres"]
 	}
 })
 

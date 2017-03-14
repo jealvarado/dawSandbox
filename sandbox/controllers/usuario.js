@@ -59,7 +59,8 @@ function saveUsuario (req,res) {
 	usuario.carrera = req.body.carrera,
 	usuario.correo = req.body.correo,
 	usuario.contrasena = req.body.contrasena, // pass,
-	usuario.rol = req.body.rol
+	usuario.rol = req.body.rol,
+	usuario.paralelo = "00"
 
 	usuario.save( (err, usuarioStored) => {
 		if (err){

@@ -11,6 +11,7 @@ var cursoCtrl = require('../controllers/curso');
 // });
 
 router.get('/:cursoId', cursoCtrl.getCurso);
+router.get('/', cursoCtrl.getCursos);
 router.post('/', cursoCtrl.saveCurso);
 router.put('/:cursoId', cursoCtrl.updateCurso);
 router.delete('/:cursoId', cursoCtrl.deleteCurso);

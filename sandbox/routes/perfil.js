@@ -11,6 +11,7 @@ var perfilCtrl = require('../controllers/perfil');
 // });
 
 router.get('/:perfilId', perfilCtrl.getPerfil);
+router.get('/', perfilCtrl.getPerfiles);
 router.post('/', perfilCtrl.savePerfil);
 router.put('/:perfilId', perfilCtrl.updatePerfil);
 router.delete('/:perfilId', perfilCtrl.deletePerfil);

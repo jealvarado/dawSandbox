@@ -16,6 +16,17 @@ function getPerfil (req,res) {
 }
 
 
+function getPerfiles (req,res) {
+	Perfil.find({}, (err, perfiles) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!perfiles)
+			return res.status(404).send({ message: `No existen usuarios`})
+
+		res.status(200).send({ perfiles })
+	})
+}
+
 
 function savePerfil (req,res) {
 	console.log('POST /api/perfil/')
@@ -70,6 +81,7 @@ function deletePerfil (req,res) {
 
 module.exports = {
 	getPerfil,
+	getPerfiles,
 	savePerfil,
 	updatePerfil,
 	deletePerfil

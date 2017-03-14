@@ -5,8 +5,7 @@ const Schema = mongoose.Schema
 
 const CursosSchema = Schema({
 	profesor: {type: String, required: true},
-	paralelo: {type: String, required: true},
-	estudiantes: {type: Array}
+	paralelo: {type: String, required: true}
 })
 
 module.exports = mongoose.model('Cursos', CursosSchema)

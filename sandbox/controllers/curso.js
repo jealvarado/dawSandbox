@@ -34,8 +34,7 @@ function saveCurso (req,res) {
 
 	let curso = new Curso()
 	curso.profesor = req.body.profesor,
-	curso.paralelo= req.body.paralelo,
-	curso.estudiantes = req.body.estudiantes,
+	curso.paralelo= req.body.paralelo
 	
 	curso.save( (err, cursoStored) => {
 		if (err)
