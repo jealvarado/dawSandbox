@@ -39,6 +39,7 @@ function getUsuario (req,res) {
 
 
 function getUsuarios (req,res) {
+	res.header('Access-Control-Allow-Origin', '*');
 	Usuario.find({}, (err, usuarios) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})

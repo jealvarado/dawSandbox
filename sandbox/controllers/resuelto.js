@@ -17,6 +17,7 @@ function getResuelto (req,res) {
 
 
 function getResueltos (req,res) {
+	res.header('Access-Control-Allow-Origin', '*');
 	Resuelto.find({}, (err, resueltos) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
