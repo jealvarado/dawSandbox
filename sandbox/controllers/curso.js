@@ -2,6 +2,12 @@
 
 var Curso = require('../models/cursos');
 
+
+
+/*************/
+/* CONSULTAR */
+/*************/
+
 function getCurso (req,res) {
 	let cursoId = req.params.cursoId
 
@@ -28,6 +34,11 @@ function getCursos (req,res) {
 }
 
 
+
+/************/
+/* INSERTAR */
+/************/
+
 function saveCurso (req,res) {
 	console.log('POST /api/cursos/')
 	console.log(req.body)
@@ -45,6 +56,11 @@ function saveCurso (req,res) {
 }
 
 
+
+/**************/
+/* ACTUALIZAR */
+/**************/
+
 function updateCurso (req,res) {
 	let cursoId = req.params.cursoId
 	let update = req.body
@@ -57,6 +73,11 @@ function updateCurso (req,res) {
 	})
 }
 
+
+
+/************/
+/* ELIMINAR */
+/************/
 
 function deleteCurso (req,res) {
 	let cursoId = req.params.cursoId

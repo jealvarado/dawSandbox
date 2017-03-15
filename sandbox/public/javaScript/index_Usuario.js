@@ -49,12 +49,12 @@ var obtener_data_editar = function(tbody, table){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
 
-		$('#edit_nomb').val(data.nombre),
-	    $('#edit_apel').val(data.apellido),
-	    $('#edit_ident').val(data.ident),
-	    $('#edit_carr').val(data.carrera),
-	    $('#edit_correo').val(data.correo),
-	    $('#edit_rol').val(data.rol),
+		$('#edit_nomb').val(data.nombre)
+	    $('#edit_apel').val(data.apellido)
+	    $('#edit_ident').val(data.ident)
+	    $('#edit_carr').val(data.carrera)
+	    $('#edit_correo').val(data.correo)
+	    $('#edit_rol').val(data.rol)
 	    $('#edit_id').val(data._id)
 	});
 
@@ -63,10 +63,10 @@ var obtener_data_editar = function(tbody, table){
 		// console.log(data);
 		
 		$('#eli_rol').text(data.rol)
-		$('#eli_ident').text( data.ident ),
+		$('#eli_ident').text( data.ident )
 		$('#eli_nomb').text( data.nombre +" "+ data.apellido )
-		$('#eli_carr').text(data.carrera),
-	    $('#eli_correo').text(data.correo),		
+		$('#eli_carr').text(data.carrera)
+	    $('#eli_correo').text(data.correo)		
 	    $('#eli_id').val(data._id)
 	});
 
