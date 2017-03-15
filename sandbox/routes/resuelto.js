@@ -7,6 +7,7 @@ var resueltoCtrl = require('../controllers/resuelto');
 
 
 router.get('/:resueltoId', resueltoCtrl.getResuelto);
+router.get('/usuario/:Id',resueltoCtrl.getResueltoUsuario)
 router.get('/', resueltoCtrl.getResueltos);
 router.post('/', resueltoCtrl.saveResuelto);
 router.put('/:resueltoId', resueltoCtrl.updateResuelto);
