@@ -41,7 +41,7 @@ function agregarP(item){
 							'href':'#collapse' + item._id
 						}).append("<span style=\"margin-top:8px;font-weight: bold;\">"+ item.titulo)
 					)
-					.append($("<a>",{"href":"ejercicio/?id="+item._id}).append($("<button>",{"class":"btn btn-info","style":"float:right"}).text("Tomar")))
+					.append($("<a>",{"href":"/sandbox_est/ejercicio/?id="+item._id}).append($("<button>",{"class":"btn btn-info","style":"float:right"}).text("Tomar")))
 				),
 				$('<div>').attr({
 							'class':'panel-collapse collapse',
@@ -72,7 +72,7 @@ function agregarI(item){
 							'href':'#collapse' + item._id
 						}).append("<span style=\"margin-right: 2%;font-weight: bold;\">"+ item.titulo)
 					)
-					.append($("<a>",{"href":"ejercicio/?id="+item._id}).append($("<button>",{"class":"btn btn-warning","style":"float:right"}).text("Tomar")))
+					.append($("<a>",{"href":"/sandbox_est/ejercicio/?id="+item._id}).append($("<button>",{"class":"btn btn-warning","style":"float:right"}).text("Tomar")))
 				),
 				$('<div>').attr({
 							'class':'panel-collapse collapse',
@@ -103,7 +103,7 @@ function agregarA(item){
 							'href':'#collapse' + item._id
 						}).append("<span style=\"margin-right: 2%;font-weight: bold;\">"+ item.titulo)
 					)
-					.append($("<a>",{"href":"ejercicio/?id="+item._id}).append($("<button>",{"class":"btn btn-danger","style":"float:right"}).text("Tomar")))
+					.append($("<a>",{"href":"/sandbox_est/ejercicio/?id="+item._id}).append($("<button>",{"class":"btn btn-danger","style":"float:right"}).text("Tomar")))
 				),
 				$('<div>').attr({
 							'class':'panel-collapse collapse',

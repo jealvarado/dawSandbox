@@ -14,7 +14,10 @@ router.get('/', function(req, res, next) {
 			res.redirect('/sandbox_prof');
 		}
 	}
-	res.redirect('/');
+	else{
+		res.redirect('/');
+	}		
+	
 });
 
 module.exports = router;

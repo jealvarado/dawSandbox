@@ -23,7 +23,7 @@ function getEjercicios (req,res) {
 		if (!ejercicios)
 			return res.status(404).send({ message: `No existen ejercicios`})
 
-		res.send(200, { ejercicios })
+		res.status(200).send({ ejercicios })
 	})
 }
 
