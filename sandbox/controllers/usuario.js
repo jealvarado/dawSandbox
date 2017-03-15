@@ -73,8 +73,8 @@ function getUsuariosEstud (req,res,next) {
 	})
 }
 
-function getUsuariosEstud (req,res,next) {
-	Usuario.find({ rol : 'Estudiante' }, (err, usuarios) => {
+function getUsuariosEstudsnParal (req,res,next) {
+	Usuario.find({ rol : 'Estudiante', paralelo : "00" }, (err, usuarios) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
 		if (!usuarios)
@@ -198,6 +198,7 @@ module.exports = {
 	getUsuarios,
 	getUsuariosProf,
 	getUsuariosEstud,
+	getUsuariosEstudsnParal,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario

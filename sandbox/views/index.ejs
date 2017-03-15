@@ -72,7 +72,7 @@
 
 					    <div id="seccion2" class="tab-pane fade">	
 					    	<br>				    	
-					        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#cursoMDL">
+					        <button type="button" class="btn btn-default btn-sm" onclick="cargaProf()" data-toggle="modal" data-target="#cursoMDL">
 					        	Nuevo
 					        </button>
 					        <br><br>
@@ -258,6 +258,59 @@
 				</div>		
 			</div>
 			<!-- Fin Modal Curso-->
+
+
+			<!-- Modal Curso Prof-->
+			<div class="modal fade" id="cursoProfMDL" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					    <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4><span class="glyphicon glyphicon-list-alt"></span> Editar Profesor del Curso </h4>
+					    </div>
+					    <div class="modal-body">
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="paralEditCrs" type="text" class="form-control input-sm" name="paralelo" placeholder=" Ingrese paralelo ">
+						    </div>						    						    
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="profEditCrs" type="text" class="form-control input-sm" name="profesor" placeholder=" Profesor ">
+						    </div>
+						    <p id="paralEditCrs_id" visible="false"></p>	
+						    <p id="profEditCrs_id" visible="false"></p>						    						    
+						    <br>
+						    <div id="profEditTabla"></div>
+						    <p id="saveMsj"></p>
+						    <div class="form-group">
+						    	<button type="btn" id="btnAct" class="btn">Actualizar</button>
+						    </div>							
+					    </div>
+					</div>
+				</div>		
+			</div>
+			<!-- Fin Modal Curso Prof-->
+
+
+			<!-- Modal Curso Estud-->
+			<div class="modal fade" id="cursoEstudMDL" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					    <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4><span class="glyphicon glyphicon-list-alt"></span> Agregar Estudiante </h4>
+					    </div>
+					    <div class="modal-body">
+						    <p id="estudCursoid"></p>						    						    
+						    <br>
+						    <div id="EstTabla"></div>
+						    <p id="saveMsj"></p>						    						
+					    </div>
+					</div>
+				</div>		
+			</div>
+			<!-- Fin Modal Curso Estud-->
 
 
 			<!-- Modal Curso Eliminar-->
