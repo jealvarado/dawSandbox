@@ -11,12 +11,21 @@ var Perfil = require('../models/perfil');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	res.render('sandbox_est', { title: 'Ejercicios Estudiantes' });
+	if (req.user) {
+		res.render('sandbox_est', { title: 'Ejercicios Estudiantes' });
+	}
+	else{
+		res.redirect('/');
+	}
 });
 
 
 router.get('/ejercicio', function(req, res, next) {
-	res.render('sandbox_estd2', { title: 'Ejercicios Estudiantes' });
+	if (req.user) {
+		res.render('sandbox_estd2', { title: 'Ejercicios Estudiantes' });
+	}else{
+		res.redirect('/');
+	}
 });
 
 router.post('/ejercicio', function (req, res, next) {
