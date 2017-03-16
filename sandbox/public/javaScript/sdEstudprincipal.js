@@ -33,9 +33,8 @@ function cargarA(){
 }
 
 function agregarP(item){
-	$('#cuer').append(
 		$('#accordion').append(
-			$('<div>').attr({'class':'panel panel-info'}).append(
+			$('<div>').attr({'class':'panel panel-info','id':'' + item.titulo}).append(
 				$('<div>').attr('class','panel-heading').append(
 					$('<h4>').attr({'class':'panel-title','style':'overflow:auto'}).append(
 						$('<a>').attr({
@@ -56,7 +55,6 @@ function agregarP(item){
 							)
 			)
 		)
-	)
 	
 	item.etiquetas.split(",").forEach(function(o){
 		$("#"+item._id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
@@ -64,9 +62,8 @@ function agregarP(item){
 }
 
 function agregarI(item){
-	$('#cuer').append(
 		$('#accordion').append(
-			$('<div>').attr({'class':'panel panel-warning'}).append(
+			$('<div>').attr({'class':'panel panel-warning','id':'' + item.titulo}).append(
 				$('<div>').attr('class','panel-heading').append(
 					$('<h4>').attr({'class':'panel-title','style':'overflow:auto'}).append(
 						$('<a>').attr({
@@ -87,7 +84,6 @@ function agregarI(item){
 							)
 			)
 		)
-	)
 	
 	item.etiquetas.split(",").forEach(function(o){
 		$("#"+item._id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
@@ -95,9 +91,8 @@ function agregarI(item){
 }
 
 function agregarA(item){
-	$('#cuer').append(
 		$('#accordion').append(
-			$('<div>').attr({'class':'panel panel-danger'}).append(
+			$('<div>').attr({'class':'panel panel-danger','id':'' + item.titulo}).append(
 				$('<div>').attr('class','panel-heading').append(
 					$('<h4>').attr({'class':'panel-title','style':'overflow:auto'}).append(
 						$('<a>').attr({
@@ -118,7 +113,6 @@ function agregarA(item){
 							)
 			)
 		)
-	)
 	
 	item.etiquetas.split(",").forEach(function(o){
 		$("#"+item._id).append($("<span>",{"class":"bg-primary","style":"padding: 2px 5px 2px 5px;margin-right:1%;"}).text(o));
@@ -143,15 +137,23 @@ function obtenerEjercicios(nivel){
 	            	agregarP(i)
 	            }
 	        })
-        	$.ajax({
-        		url:'/api/resuelto/actual',
-        		type: 'GET',
-        		success:function(resuelto){
-    				resuelto.resuelto.forEach(function(i){
-	            		console.log(i.idEjercicio);
-	        		})
-	            }
-	        })
         }
     })
+    $.ajax({
+        url:'/api/resuelto/actual',
+        type: 'GET',
+        success:function(resuelto){
+        	console.log(resuelto)
+    		resuelto.resuelto.forEach(function(i){
+	       		$.ajax({
+        			url:'/api/ejercicios/'+i.idEjercicio,
+        			type: 'GET',
+        			success:function(ejer){
+        				console.log(ejer.ejercicio.titulo);
+        				$('#'+ejer.ejercicio.titulo).hide();
+        			}
+        		})
+	    	})
+	    }
+	})
 }

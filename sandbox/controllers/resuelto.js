@@ -29,9 +29,14 @@ function getResueltoUsuario (req,res) {
 }
 
 function getResueltoActual (req,res) {
-	let userId = "58c7567fc5b67533d0e26678" //req.user.session
-
-	Resuelto.find({ idUsuario : userId }, (err, resuelto) => {
+	if (!req.user) {
+		return res.status(401).send({ message: `No ha iniciado sesion`})
+	}
+	if (req.user.rol!='Estudiante') {
+		return res.status(401).send({ message: `Rol no es Estudiante`})
+	}
+	let resulId = req.user.id
+	Resuelto.find({ idUsuario : resulId }, (err, resuelto) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
 		if (!resuelto)
