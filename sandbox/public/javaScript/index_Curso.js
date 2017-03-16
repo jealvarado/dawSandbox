@@ -1,4 +1,7 @@
 
+/*****************************************************/
+/* Funciones para cargar tablas utilizadas en cursos */
+/*****************************************************/
 
 function cargaCursos() {
 
@@ -55,16 +58,16 @@ function cargaCursos() {
 					        { "data": "profesor" },
 					        { "data": "estudiantes" },
 					        { "defaultContent": 
-					        	"<button type='button' class='addEstCurso btn btn-success' onclick='cargaEstsnParl()' data-toggle='modal' data-target='#cursoEstudMDL' >"+
+					        	"<button type='button' class='addEstCurso btn btn-success' onclick='cargaEstsnParl()' data-toggle='modal' data-target='#cursoEstudMDL' title='Agregar Estud' >"+
 					        		"<i class='fa fa-users'></i>"+
 					        	"</button>"+
-					        	"<button type='button' class='edtEstCurso btn btn-success' data-toggle='modal' data-target='#cursoEdtEstudMDL'>"+
-					        		"<i class='fa fa-pencil-square-o'></i>"+
+					        	"<button type='button' class='edtEstCurso btn btn-success' data-toggle='modal' data-target='#cursoEdtEstudMDL' title='Ver Estud' >"+
+					        		"<i class='fa fa-eye'></i>"+
 					        	"</button>"+
-					        	"<button type='button' class='edtProfCurso btn btn-primary' onclick='cargaEditProf()'data-toggle='modal' data-target='#cursoProfMDL' >"+
+					        	"<button type='button' class='edtProfCurso btn btn-primary' onclick='cargaEditProf()'data-toggle='modal' data-target='#cursoProfMDL' title='Editar Prof' >"+
 					        		"<i class='fa fa-user'></i>"+
 					        	"</button>"+
-					        	"<button type='button' class='elimCurso btn btn-danger' data-toggle='modal' data-target='#cursoEliMDL' >"+
+					        	"<button type='button' class='elimCurso btn btn-danger' data-toggle='modal' data-target='#cursoEliMDL' title='Eliminar Curso' >"+
 					        		"<i class='fa fa-trash-o'></i>"+
 					        	"</button>"
 					        }
@@ -78,97 +81,6 @@ function cargaCursos() {
 		}
 	});	
 }
-
-
-
-$(document).ready(function() {
-    // $("#my-button").click(LoadData);
-    cargaCursos();
-});
-
-
-
-
-$(function() {
-
-	
-	$('#cursoMDL #btnAdd').on('click', function() {		
-
-	    // get the form data
-	    // there are many ways to get this data using jQuery (you can use the class or id also)
-	    var formData = {
-	        paralelo    : $('#paraleloCurso').val(),
-	        profesor    : $('#profCurso_id').val()
-	    };
-	    // console.log(formData);
-	    
-	    // process the form	       	        
-	    $.ajax({
-	        url 			: '/api/cursos/',	// the url where we want to POST
-	        type 			: 'POST', 			// define the type of HTTP verb we want to use (POST for our form)
-		    data 			: formData,			// our data object
-		    // dataType    	: 'json' 			// what type of data do we expect back from the server
-		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
-	        success 		: function(response) {	            
-	            cargaCursos();
-	            $('#cursoMDL').modal('hide');	            
-	        }
-		});
-		
-	});
-
-
-	$('#cursoEliMDL #btnElim').on('click', function() {		
-
-	    // get the form data
-	    // there are many ways to get this data using jQuery (you can use the class or id also)
-	    var cursoId = $('#eliCrs_id').val();
-	    // console.log(cursoId);
-	    
-	    // process the form	       	        
-	    $.ajax({
-	        url 			: '/api/cursos/'+cursoId,	// the url where we want to POST
-	        type 			: 'DELETE', 		// define the type of HTTP verb we want to use (POST for our form)
-		    // data 			: formData,			// our data object
-		    // dataType    	: 'json' 			// what type of data do we expect back from the server
-		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
-	        success 		: function(response) {	            
-	            cargaCursos();
-	            $('#cursoEliMDL').modal('hide');	            
-	        }
-		});
-		
-	});
-
-
-	$('#cursoProfMDL #btnAct').on('click', function() {	
-
-		var formData = {
-			cursoId		: $('#paralEditCrs_id').val(),
-	        profesor    : $('#profEditCrs_id').val()
-	    };
-	    console.log(formData);
-
-	    // process the form	       	        
-	    $.ajax({
-	        url 			: '/api/cursos/'+formData.cursoId,	// the url where we want to POST
-	        type 			: 'PUT', 			// define the type of HTTP verb we want to use (POST for our form)
-		    data 			: formData,			// our data object
-		    // dataType    	: 'json' 			// what type of data do we expect back from the server
-		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
-	        success 		: function(response) {
-	            // console.log(response);
-	            // borrarCampos();
-	            cargaCursos();
-	            $('#cursoProfMDL').modal('hide');	            
-	        }
-		});
-
-	});
-
-
-});
-
 
 
 function cargaProf() {
@@ -193,7 +105,7 @@ function cargaProf() {
 	        { "data": "nombre" },
 	        { "data": "apellido" },
 	        { "defaultContent": 
-	        	"<button type='button' class='addProf btn btn-primary'>"+
+	        	"<button type='button' class='addProf btn btn-primary' data-toggle='tooltip' title='Agregar Prof'>"+
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"
 	        }
@@ -227,7 +139,7 @@ function cargaEditProf() {
 	        { "data": "nombre" },
 	        { "data": "apellido" },
 	        { "defaultContent": 
-	        	"<button type='button' class='editProfCrs btn btn-primary'>"+
+	        	"<button type='button' class='editProfCrs btn btn-primary' data-toggle='tooltip' title='Cambiar Prof' >"+
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"
 	        }
@@ -261,7 +173,7 @@ function cargaEstsnParl() {
 	        { "data": "nombre" },
 	        { "data": "apellido" },
 	        { "defaultContent": 
-	        	"<button type='button' class='addEst btn btn-success'>"+
+	        	"<button type='button' class='addEst btn btn-success' data-toggle='tooltip' title='Agregar Estud'>"+
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"
 	        }
@@ -272,6 +184,120 @@ function cargaEstsnParl() {
 }
 
 
+/**************************************/
+/* Funciones eventos click de botones */
+/**************************************/
+
+$(function() {
+
+	/*********************/
+	/* Graba curso nuevo */
+	/*********************/
+	$('#cursoMDL #btnAdd').on('click', function() {		
+
+	    var formData = {
+	        paralelo    : $('#paraleloCurso').val(),
+	        profesor    : $('#profCurso_id').val()
+	    };
+	    // console.log(formData);
+	          
+	    $.ajax({
+	        url 			: '/api/cursos/',	// the url where we want to POST
+	        type 			: 'POST', 			// define the type of HTTP verb we want to use (POST for our form)
+		    data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {	            
+	            cargaCursos();
+	            $('#cursoMDL').modal('hide');	            
+	        }
+		});
+		
+	});
+
+
+	/*****************/
+	/* Elimina curso */
+	/*****************/
+	$('#cursoEliMDL #btnElim').on('click', function() {		
+
+	    var cursoId = $('#eliCrs_id').val();
+	    // console.log(cursoId);
+	    
+	    $.ajax({
+	        url 			: '/api/cursos/'+cursoId,	// the url where we want to POST
+	        type 			: 'DELETE', 		// define the type of HTTP verb we want to use (POST for our form)
+		    // data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {	            
+	            cargaCursos();
+	            $('#cursoEliMDL').modal('hide');	            
+	        }
+		});
+		
+	});
+
+
+	/********************************/
+	/* Actualiza profesor del curso */
+	/********************************/
+	$('#cursoProfMDL #btnAct').on('click', function() {	
+
+		var formData = {
+			cursoId		: $('#paralEditCrs_id').val(),
+	        profesor    : $('#profEditCrs_id').val()
+	    };
+	    console.log(formData);
+     	        
+	    $.ajax({
+	        url 			: '/api/cursos/'+formData.cursoId,	// the url where we want to POST
+	        type 			: 'PUT', 			// define the type of HTTP verb we want to use (POST for our form)
+		    data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {
+	            // console.log(response);
+	            cargaCursos();
+	            $('#cursoProfMDL').modal('hide');	            
+	        }
+		});
+
+	});
+
+
+});
+
+	/***********************************/
+	/* Actualiza estudiantes del curso */
+	/***********************************/
+	function grabaEstCrs() {
+	    
+		var formData = {
+			usuarioId	: $('#estudSN_id').val(),
+	        paralelo    : $('#estudCursoid').val()
+	    };
+	    console.log(formData);
+	 	       
+	    $.ajax({
+	        url 			: '/api/usuario/'+formData.usuarioId,	// the url where we want to POST
+	        type 			: 'PUT', 			// define the type of HTTP verb we want to use (POST for our form)
+		    data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {
+	            // console.log(response);
+	            cargaEstsnParl();
+	            // $('#cursoEstudMDL').modal('hide');
+	        }
+		});
+			
+	}
+
+
+/********************************************/
+/* Funcion para obtener datos de las tablas */
+/********************************************/
 
 var obtener_data = function(tbody, table){
 
@@ -297,7 +323,16 @@ var obtener_data = function(tbody, table){
 		// console.log(data);
 
 		$('#estudCursoid').text("Paralelo: "+data.paralelo)
-	    $('#estudCursoid').val(data.id)
+	    $('#estudCursoid').val(data.paralelo)
+	});
+
+	$(tbody).on("click", "button.addEst", function(){
+		var data = table.row( $(this).parents("tr") ).data();
+		// console.log(data);
+
+		$('#estudSN_id').val(data._id)
+		
+		grabaEstCrs()
 	});
 
 	$(tbody).on("click", "button.edtProfCurso", function(){
@@ -315,6 +350,24 @@ var obtener_data = function(tbody, table){
 
 		$('#profEditCrs_id').val(data._id)
 		$('#profEditCrs').val(data.nombre+" "+data.apellido)
-	});
+	});	
 
 }
+
+
+
+/*********/
+/* READY */
+/*********/
+
+$(document).ready(function() {
+    
+    cargaCursos();
+     
+});
+
+
+/*
+$("#div1").fadeIn();
+$("#div1").fadeOut(3000);
+*/

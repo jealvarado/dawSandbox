@@ -83,7 +83,14 @@
 
 					</div>
 				</div>
-			</section>	
+			</section>
+
+
+			<!-- 
+			/*******************************/
+			/* Modal's de pestana usuarios */
+			/*******************************/ 
+			-->
 
 			<!-- Modal Usr Nuevo-->
 			<div class="modal fade" id="usuarioMDL" role="dialog">
@@ -152,44 +159,42 @@
 					        <h4><span class="glyphicon glyphicon-list-alt"></span> Actualizar Usuario </h4>
 					    </div>
 					    <div class="modal-body">
-					   		<!-- <form action="" onSubmit="enviarDatos(); return false"> -->
-						    	<div class="input-group">
-								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-								    <input id="edit_ident" type="text" class="form-control input-sm" name="ident" placeholder=" Ingrese matrícula">
-							    </div>
-							    <br>
-						        <div class="input-group">
-								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-								    <input id="edit_nomb" type="text" class="form-control input-sm" name="nombre" placeholder="Nombre">
-							    </div>
-							    <br>
-							    <div class="input-group">
-								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-								    <input id="edit_apel" type="text" class="form-control input-sm" name="apellido" placeholder="Apellido">
-							    </div>
-							    <br>
-							    <div class="input-group">
-								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-								    <input id="edit_carr" type="text" class="form-control input-sm" name="carrera" placeholder="Carrera">
-							    </div>
-							    <br>
-							    <div class="input-group">
-								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-								    <input id="edit_correo" type="text" class="form-control input-sm" name="correo" placeholder="Email">
-							    </div>
-							    <br>
-							    <div class="input-group">
-								    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-								    <input id="edit_pass" type="password" class="form-control input-sm" name="pass" placeholder="Contrasena">
-							    </div>
-							    <br>
-							    <p id="edit_rol" visible="false"></p>
-							    <p id="edit_id" visible="false"></p>
-							    <p id="actMsj"></p>
-							    <div class="form-group">
-							    	<button type="btn" id="btnAct" class="btn" >Actualizar</button>
-							    </div>
-							<!-- </form> -->
+					    	<div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="edit_ident" type="text" class="form-control input-sm" name="ident" placeholder=" Ingrese matrícula">
+						    </div>
+						    <br>
+					        <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="edit_nomb" type="text" class="form-control input-sm" name="nombre" placeholder="Nombre">
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="edit_apel" type="text" class="form-control input-sm" name="apellido" placeholder="Apellido">
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="edit_carr" type="text" class="form-control input-sm" name="carrera" placeholder="Carrera">
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="edit_correo" type="text" class="form-control input-sm" name="correo" placeholder="Email">
+						    </div>
+						    <br>
+						    <div class="input-group">
+							    <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
+							    <input id="edit_pass" type="password" class="form-control input-sm" name="pass" placeholder="Contrasena">
+						    </div>
+						    <br>
+						    <p id="edit_rol" visible="false"></p>
+						    <p id="edit_id" visible="false"></p>
+						    <p id="actMsj"></p>
+						    <div class="form-group">
+						    	<button type="btn" id="btnAct" class="btn" >Actualizar</button>
+						    </div>
 					    </div>
 					</div>
 				</div>		
@@ -228,6 +233,13 @@
 			<!-- Fin Modal Usr Eliminar-->
 
 
+
+			<!-- 
+			/*****************************/
+			/* Modal's de pestana cursos */
+			/*****************************/ 
+			-->
+
 			<!-- Modal Curso-->
 			<div class="modal fade" id="cursoMDL" role="dialog">
 				<div class="modal-dialog">
@@ -258,6 +270,48 @@
 				</div>		
 			</div>
 			<!-- Fin Modal Curso-->
+
+
+			<!-- Modal Curso Estud-->
+			<div class="modal fade" id="cursoEstudMDL" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					    <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4><span class="glyphicon glyphicon-list-alt"></span> Agregar Estudiante </h4>
+					    </div>
+					    <div class="modal-body">
+						    <p id="estudCursoid"></p>
+						    <p id="estudSN_id" visible="false"></p>							    						    
+						    <br>
+						    <div id="EstTabla"></div>
+						    <p id="saveMsj"></p>						    						
+					    </div>
+					</div>
+				</div>		
+			</div>
+			<!-- Fin Modal Curso Estud-->
+
+
+			<!-- Modal Curso Estud Edit-->
+			<div class="modal fade" id="cursoEdtEstudMDL" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					    <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4><span class="glyphicon glyphicon-list-alt"></span> Agregar Estudiante </h4>
+					    </div>
+					    <div class="modal-body">
+						    <p id="estudCursoid"></p>
+						    <p id="estudSN_id" visible="false"></p>							    						    
+						    <br>
+						    <div id="EstxParalTbl"></div>
+						    <p id="saveMsj"></p>						    						
+					    </div>
+					</div>
+				</div>		
+			</div>
+			<!-- Fin Modal Curso Estud Edit-->
 
 
 			<!-- Modal Curso Prof-->
@@ -291,26 +345,6 @@
 				</div>		
 			</div>
 			<!-- Fin Modal Curso Prof-->
-
-
-			<!-- Modal Curso Estud-->
-			<div class="modal fade" id="cursoEstudMDL" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-					    <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h4><span class="glyphicon glyphicon-list-alt"></span> Agregar Estudiante </h4>
-					    </div>
-					    <div class="modal-body">
-						    <p id="estudCursoid"></p>						    						    
-						    <br>
-						    <div id="EstTabla"></div>
-						    <p id="saveMsj"></p>						    						
-					    </div>
-					</div>
-				</div>		
-			</div>
-			<!-- Fin Modal Curso Estud-->
 
 
 			<!-- Modal Curso Eliminar-->

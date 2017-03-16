@@ -29,10 +29,10 @@ function LoadData() {
 	        { "data": "rol" },
 	        { "data": "correo" },
 	        { "defaultContent": 
-	        	"<button type='button' class='editarUsr btn btn-primary' data-toggle='modal' data-target='#usrEditMDL' >"+
+	        	"<button type='button' class='editarUsr btn btn-primary' data-toggle='modal' data-target='#usrEditMDL' data-toggle='tooltip' title='Editar Usuario' >"+
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"+
-	        	"<button type='button' class='eliminarUsr btn btn-danger' data-toggle='modal' data-target='#usrElitMDL' >"+
+	        	"<button type='button' class='eliminarUsr btn btn-danger' data-toggle='modal' data-target='#usrElitMDL' data-toggle='tooltip' title='Eliminar Usuario' >"+
 	        		"<i class='fa fa-trash-o'></i>"+
 	        	"</button>"
 	        }
