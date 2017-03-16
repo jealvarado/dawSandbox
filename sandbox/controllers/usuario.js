@@ -114,42 +114,53 @@ function saveUsuario (req,res) {
 			console.log(err)
 		}
 		else{
-			var correo= req.body.correo;
-			var Subject="Creacion de cuenta en Sandbox"
-			var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + req.body.contrasena; 
-			var mailOptions = {
-				to: correo,
-				subject: Subject,
-				text: contenido
-			}
-			smtpTransport.sendMail(mailOptions, function(error, response){
-				if (error) {
-					console.log(error);
-					res.end('Error al enviar el Email');
-				} else {
-					
-					if ( usuarioStored.rol == "Estudiante" ) {
-						let perfil = new Perfil()
-						perfil.idestudiante = usuarioStored._id,
-						perfil.insignia= 'Novato',
-						perfil.insigniaSema = 'Ninguno',
-						perfil.ejFacil = 0,
-						perfil.ejIntermedio = 0,
-						perfil.ejDificil = 0
+			if ( usuarioStored.rol == "Estudiante" ) {
+				let perfil = new Perfil()
+				perfil.idestudiante = usuarioStored._id,
+				perfil.insignia= 'Novato',
+				perfil.insigniaSema = 'Ninguno',
+				perfil.ejFacil = 0,
+				perfil.ejIntermedio = 0,
+				perfil.ejDificil = 0
 
-						console.log(perfil);
-						
-						perfil.save( (err, perfilStored) => {
-							if (err)
-								res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
-
-							res.status(200).send({ usuario: usuarioStored, perfil: perfilStored })
-						})
+				console.log(perfil);
+				
+				perfil.save( (err, perfilStored) => {
+					if (err)
+						res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
+					var correo= req.body.correo;
+					var Subject="Creacion de cuenta en Sandbox"
+					var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + req.body.contrasena; 
+					var mailOptions = {
+						to: correo,
+						subject: Subject,
+						text: contenido
 					}
-					
-					res.status(200).send({ usuario: usuarioStored });	
+					smtpTransport.sendMail(mailOptions, function(error, response){
+						if (error) {
+							console.log(error);
+							//res.status(500).send('Error al enviar el Email: ${err}');
+						} 
+					});
+					res.status(200).send({ usuario: usuarioStored, perfil: perfilStored })
+				})
+			}
+			else{
+				var correo= req.body.correo;
+				var Subject="Creacion de cuenta en Sandbox"
+				var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + req.body.contrasena; 
+				var mailOptions = {
+					to: correo,
+					subject: Subject,
+					text: contenido
 				}
-			})			
+				smtpTransport.sendMail(mailOptions, function(error, response){
+					if (error) {
+						console.log(error);
+						//res.status(500).send('Error al enviar el Email: ${err}');
+					} 
+				});
+			}
 		}		
 	})
 }
