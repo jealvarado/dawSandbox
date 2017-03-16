@@ -56,7 +56,7 @@
 					<div class="tab-content">
 					    <div id="seccion1" class="tab-pane fade in active">
 					    		<br>
-					        	<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">Nuevo</button>
+					        	<button type="button" id="btnnew" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">Nuevo</button>
 					        	<br>
 								<div class="panel-group col-xs-7 col-md-8" id="panelColl">
 								</div>
@@ -112,12 +112,31 @@
 						    <p id="errorMsj"></p>
 						    <div class="form-group">
 						    	<button id="btnAdd" class="btn">Agregar</button>
+								<button id="btnEdit" class="btn">Editar</button>						    	
 						    </div>
 					    </div>
 					</div>
 				</div>
 			</div>
 			<!-- Fin Modal -->
+
+			<div id="modalElim" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title" style="color:red;">Peligro</h4>
+			      </div>
+			      <div class="modal-body">
+			        <strong>Esta seguro que desea eliminar el ejercicio</strong>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" id="btnDelete" class="btn btn-danger" data-dismiss="modal">Si</button>
+			      </div>
+			    </div>
+
+			  </div>
+			</div>
 
 			<footer>
 				<div id="sub-footer">

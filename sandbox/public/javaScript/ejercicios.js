@@ -21,7 +21,6 @@ function LoadData() {
 function eliminarData(clave){
 	$('#modalElim').modal('show');
 	borrar=clave;
-
 }
 
 $(function() {
@@ -36,6 +35,7 @@ $(function() {
 });
 
 function mostrarData(clave){
+	$("#errorMsj").hide();
 	$('#btnAdd').hide();
 	$('#btnEdit').show();
 	$('#modalEjerc').modal('show');
@@ -59,6 +59,7 @@ $(document).ready(function() {
     LoadData();
     $('#btnEdit').hide(); 
     $('#btnnew').click(function(){
+    	$("#errorMsj").hide();
 		$('#btnAdd').show();
 		$('#btnEdit').hide();
 		borrarCampos();    	
@@ -67,6 +68,14 @@ $(document).ready(function() {
 
 $(function() {
 	$('#btnEdit').on('click', function() {
+
+		if ( $("input[name=titulo]").val() === "" || $("#descrip").val() === "" || $("input[name=datoEntrada]").val() === "" || $("input[name=datoSalida]").val() === "" || $("input[name=etiq]").val() === "" || $("#nivel").val() === "" ) {
+			console.log("campos vacios");
+			$("#errorMsj").show();
+			$("#errorMsj").attr("class","alert alert-danger").text("Se deben completar todos los campos!!");
+			return;		
+		}
+
 		console.log(idEjercicio);
 		var idUsuario = "sss";
 	    var formData = {
@@ -98,6 +107,13 @@ $(function() {
 	$('#btnAdd').on('click', function() {
 
 		var idUsuario = "sss"
+
+		if ( $("input[name=titulo]").val() === "" || $("#descrip").val() === "" || $("input[name=datoEntrada]").val() === "" || $("input[name=datoSalida]").val() === "" || $("input[name=etiq]").val() === "" || $("#nivel").val() === "" ) {
+			console.log("campos vacios");
+			$("#errorMsj").show();
+			$("#errorMsj").attr("class","alert alert-danger").text("Se deben completar todos los campos!!");
+			return;		
+		}
 		
 	    // get the form data
 	    // there are many ways to get this data using jQuery (you can use the class or id also)
