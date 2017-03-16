@@ -10,6 +10,7 @@ const CursosSchema = Schema({
 	},
 	paralelo: {
 		type: String, 
+		maxlength: [2, "Maximo 2 caracteres"], 
 		required: "El paralelo es obligatorio"
 	}
 })
