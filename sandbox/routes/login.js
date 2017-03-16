@@ -129,4 +129,43 @@ router.get('/logout', function(req, res){
   res.redirect('/');
 });
 
+router.get('/cambiarpass', function (req, res) {
+	if (req.user) {
+		res.render('cambiarpass', { title: 'Cambiar Contraseña' });
+	}
+	else{
+		res.redirect('/');		
+	}
+});
+
+router.post('/cambiarpass', function (req, res) {
+	if (req.user) {
+		if(req.body.password==req.body.pconfirm){
+			User.findOne({ _id: req.user.id }, function(err, usuario) {
+				if (err) {
+					return res.status(500).send({ message: `Error al buscar Perfil de Usuario: ${err}`});
+				}
+				var hash=createHash(req.body.password);
+				usuario.contrasena=hash;
+				usuario.save(function (err, updatedPerfil) {
+					if (err) {
+						return res.status(500).send({ message: `Error al guardar el Perfil de Usuario: ${err}`});
+					}
+					return res.redirect('/index');
+				});
+			});
+		}
+		else{
+			res.redirect('/cambiarpass');	
+		}
+	}
+	else{
+		res.redirect('/');	
+	}
+});
+
+var createHash = function(password){
+	return bCrypt.hashSync(password);
+}
+
 module.exports = router;

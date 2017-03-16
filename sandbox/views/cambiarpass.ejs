@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/styleSB.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<header>
+				<nav id="barra" class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+								<span class="sr-only">Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="/index"><img src="/img/logo.png" alt="Fundamentos de Programación"></a>
+						</div>
+						<div class="collapse navbar-collapse" id="navbar-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li> <a href="/index">Inicio</a> </li>											
+								<li> 
+									<a href="/api/perfil/vista">
+								        <span id="icon" class="glyphicon glyphicon-user"></span>
+								        <span id="texto"></span>
+								    </a>
+								</li>
+								<li> 
+									<a href="/logout">
+								        <span id="icon" class="glyphicon glyphicon-log-out"></span>
+								        <span id="texto"></span>
+								    </a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+			
+			<div class="container-fluid">
+				<div class="row content">					
+					<div class="col-sm-9" id="cuer">
+						<form action="/cambiarpass" method="POST" id="formCambiar">
+							<div class="form-group">
+								<label for="password">Contrase&ntilde;a:</label>
+								<input type="password" placeholder="Ingrese contrasena" name="password" id="password" required class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="pconfirm">Confirme:</label>
+								<input type="password" placeholder="Confirme contrasena" name="pconfirm" id="pconfirm" required class="form-control">
+							</dir>
+							<input type="submit">
+						</form>
+					</div>					
+					
+				</div>
+			</div>
+			
+			<footer>
+				<div id="sub-footer">
+					<div class="container2">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="copyright">
+									<P>Guayaquil, Ecuador</p>
+									<p>© Escuela Superior Politecnica del Litoral. All right reserved.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="/javaScript/cambiarpass.js" type="text/javascript"></script>
+
+	</body>
+
+</html>
