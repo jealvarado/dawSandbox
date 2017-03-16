@@ -3,9 +3,9 @@
 var Perfil = require('../models/perfil');
 
 function getPerfil (req,res) {
-	let perfilId = req.params.perfilId
+	let perfilId = "58c7567fc5b67533d0e26678" //req.user.session
 
-	Perfil.findById(perfilId, (err, perfil) => {
+	Perfil.find({idestudiante:perfilId}, (err, perfil) => {
 		if (err)
 			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
 		if (!perfil)

@@ -1,15 +1,95 @@
-<html>
-<head>
-	<title></title>
-	<meta charset="UTF-8">
-</head>
-<body>
-	<div>
-		<p>Nombre<span id="name"></span></p>
-		<p>puntaje obtenido<span id="puntaje"></span></p>
-		<p>ejercicos completados<span id="ejercicios"></span></p>
-		<ul id="insignias"></ul>
+<!DOCTYPE html>
 
-	</div>
-</body>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<title><%= title %></title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/stylesheets/styleSB.css">
+	
+	</head>
+
+	<body>
+	
+		<div class="container">
+			<header>
+				<nav id="barra" class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-1">
+								<span class="sr-only">Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><img src="/img/logo.png" alt="Fundamentos de Programación">
+        					</a>
+						</div>
+
+						<div class="collapse navbar-collapse" id="navbar-1">
+							<ul class="nav navbar-nav navbar-right">
+								<li><a href="/index">Administracion</a></li>
+								<!--Copiando para las demas vistas-->
+								<li class="dropdown active"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Reportes<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li class="active"><a href="#">Reporte por Fecha</a></li>
+										<li><a href="curso">Reporte por Ejercicios</a></li>
+									</ul>
+								</li> 
+							</ul>
+						</div>
+
+					</div>
+				</nav>
+			</header>
+
+			<section class="container-fluid">
+				<div class="row">
+					<ul class="nav nav-tabs">
+					    <li class="active"><a data-toggle="tab" href="#seccion1">Perfil</a></li>
+					</ul>
+
+					<div class="tab-content">					    
+					    <div id="seccion1" class="tab-pane fade in active">					    	
+				    		<div class="panel-group">
+					    		<div class="panel panel-info">
+						    		<div class="panel-heading" id="nickUser"></div>
+						      		<div class="panel-body" id="dataUser"></div>
+						      		<div class="panel-footer" id="datatotal"></div>
+						    	</div>							    
+						    </div>
+							
+							<div class="boton">
+								<button type="button" class="btn btn-default btn-sm" id="signout">Cerrar Sesión</button>
+							</div>	
+							<p id="errorMsj"></p>
+
+					    </div>
+					</div>
+				</div>
+			</section>
+
+			<footer>
+				<div id="sub-footer">
+					<div class="container2">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="copyright">
+									<P>Guayaquil, Ecuador</p>
+									<p>© Escuela Superior Politecnica del Litoral. All right reserved.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  		<script src="/javaScript/perfil.js"></script>
+	</body>
 </html>

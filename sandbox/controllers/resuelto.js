@@ -15,6 +15,31 @@ function getResuelto (req,res) {
 	})
 }
 
+function getResueltoUsuario (req,res) {
+	let estudianteId = req.params.Id
+
+	Resuelto.find({ idUsuario : estudianteId }, (err, resuelto) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!resuelto)
+			return res.status(404).send({ message: `No existe el Ej. resuelto`})
+
+		res.status(200).send({ resuelto })
+	})
+}
+
+function getResueltoActual (req,res) {
+	let userId = "58c7567fc5b67533d0e26678" //req.user.session
+
+	Resuelto.find({ idUsuario : userId }, (err, resuelto) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!resuelto)
+			return res.status(404).send({ message: `No existe el Ej. resuelto`})
+
+		res.status(200).send({ resuelto })
+	})
+}
 
 function getResueltos (req,res) {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -104,12 +129,13 @@ function resueltosPorFecha(req, res) {
 	})
 }
 
-
 module.exports = {
 	getResuelto,
 	getResueltos,
 	saveResuelto,
 	updateResuelto,
 	deleteResuelto,
-	resueltosPorFecha
+	resueltosPorFecha,
+	getResueltoUsuario,
+	getResueltoActual
 }

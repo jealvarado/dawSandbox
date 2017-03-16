@@ -59,7 +59,12 @@ var validacion = function (req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Login Sandbox' });
+	if (req.user) {
+		res.redirect('/index');
+	}
+	else{
+		res.render('login', { title: 'Login Sandbox' });
+	}
 });
 
 
@@ -88,10 +93,10 @@ router.post('/authenticate', function(req, res, next) {
 		if (err) throw err;
 
 		if (!user) {
-			console.log(req.body.username);
-			console.log(user);
+			console.log(req.body.username);			
 			res.json({ success: false, message: 'Authentication failed. User not found.' });
 		} else if (user) {
+			console.log(user);
 			// check if password matches
 			if (user.password != req.body.psw) {
 				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
@@ -111,12 +116,17 @@ router.post('/authenticate', function(req, res, next) {
 router.post('/',
 	passport.authenticate('local', {failureRedirect:'/',failureFlash: true}),
   	function(req, res) {
-		res.redirect('/index');
+  		res.redirect('/index');
 	}
 );
 
 var isValidPassword = function(user, password){
 	return bCrypt.compareSync(password, user.contrasena);
 }
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;

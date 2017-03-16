@@ -309,3 +309,11 @@ footer h5 a:hover, footer a:hover {
 	text-align:left;
 	font-size:12px;
 }
+
+.row .tab-pane {
+	margin-top: 2%;
+}
+
+.panel-group {
+	width: 50%;
+}

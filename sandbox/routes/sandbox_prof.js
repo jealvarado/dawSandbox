@@ -5,7 +5,17 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('sandbox_prof', { title: 'Ejercicios Profesor' });
+	if (req.user) {
+		if(req.user.rol=='Administrador' || req.user.rol=='Profesor'){
+			res.render('sandbox_prof', { title: 'Ejercicios Profesor' });
+		}
+		else{
+			res.redirect('/index');
+		}
+	}else{
+		res.redirect('/');
+	}
+	
 });
 
 

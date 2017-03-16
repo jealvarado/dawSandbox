@@ -1,5 +1,7 @@
 //var PythonShell = require('python-shell');
 
+var f;
+
 function colocar(ar){
 	$("#cuer").empty();
 	$("#cuer").append($("<h1>").text(ar.titulo));
@@ -14,9 +16,12 @@ function colocar(ar){
 	$("#cuer").append($("<p>").text(ar.datosSalida));
 	$("#cuer").append("<br>");
 	$("#cuer").append($("<h4>").text("Solución:"));
-	$("#cuer").append($("<form>",{"class":"form-group"}).append($("<input>",{"id":"arhivo","type":"file"}).text("Arhivo")));
+	$("#cuer").append($("<form>",{"class":"form-group", "id":"formUpload", "encType":"multipart/form-data"})
+		.append($("<input>",{"id":"pyFile","type":"file", "name":"pyFile", "required":"true"}).text("Arhivo"))
+		.append($("<input>",{"id":"arhivo","type":"hidden", "name":"idEjercicio", "required":"true"}).val(ar._id)));
 	$("#cuer").append("<br>");	
-	$("#cuer").append($("<button>",{"type":"button","class":"btn btn-info","onclick":"enviar(\""+ar.datosEntrada+"\",\""+ar.datosSalida+"\")","data-toggle":"modal","data-target":"#myModal","style":"margin-right: 2%;"}).text("Enviar"));
+	$("#cuer").append($("<button>",{"type":"button","class":"btn btn-info","data-toggle":"modal","data-target":"#myModal","style":"margin-right: 2%;"})
+		.text("Enviar").click(enviar));
 	$("#cuer").append($("<a>",{"href":"/sandbox_est/"}).append($("<button>",{"class":"btn btn-danger"}).text("Cerrar")));
 }
 
@@ -25,10 +30,55 @@ $(document).ready(function(){
 	mostrarData(a[1]);
 })
 
-function enviar(entr, sald){
-	console.log(entr);
-	console.log(sald);
-	console.log($('#archivo').files);
+function enviar(){
+	formData = new FormData($("#formUpload")[0]);
+	f=formData;
+	files=$('#pyFile')[0].files
+	if (files.length) {
+		console.log(files);
+		//formData.append('pyFile', files[0])
+		f=formData;		
+		$("#btnOK").prop( "disabled", true );
+		$("#pMensaje").text("Procesando arhivo en el servidor. Espere un momento")
+		$.ajax({
+			url: '/sandbox_est/ejercicio',
+			type: 'POST',
+			data: formData,
+			processData: false,
+			contentType: false,
+			success: function(data, status, request){
+				fup=data;
+				console.log(data);
+				console.log(status);
+				console.log(request);
+				$("#pMensaje").text(data.mensaje);
+				$("#btnOK").prop( "disabled", false );
+				if (data.estado) {
+					$("#myModal").on("hide.bs.modal", function(){
+						window.location = "/sandbox_est";
+					});
+				}
+				else{
+					if(data.redirectLogin){
+						$("#myModal").on("hide.bs.modal", function(){
+							window.location = "/index";
+						});
+					}
+				}			
+				//$("#pMensaje").text("Subiendo arhivo al servidor. Espere un momento")
+			},
+			error: function (res, status, error) {
+				console.log(res.responseText);
+				console.log(status);
+				console.log(error);
+				$("#pMensaje").text(data.mensaje);
+				$("#btnOK").prop( "disabled", false );
+			}
+		});
+	}
+	else{
+		$("#pMensaje").text("Seleccione arhivo para enviar.")
+	}
 }
 
 function mostrarData(clave){
