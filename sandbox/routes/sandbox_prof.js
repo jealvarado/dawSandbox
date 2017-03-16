@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 	if (req.user) {
 		if(req.user.rol=='Administrador' || req.user.rol=='Profesor'){
-			res.render('sandbox_prof', { title: 'Ejercicios Profesor' });
+			res.render('sandbox_prof', {title: 'Ejercicios Profesor'});
 		}
 		else{
 			res.redirect('/index');
