@@ -10,7 +10,7 @@ function getPerfil (req,res) {
 	if (req.user.rol!='Estudiante') {
 		return res.status(401).send({ message: `Rol no es Estudiante`})
 	}
-	let perfilId = req.user._id
+	let perfilId = req.user.id
 	console.log(perfilId);
 	Perfil.find({idestudiante:perfilId}, (err, perfil) => {
 		if (err)
