@@ -1,9 +1,9 @@
 function LoadData() {
+	$('#panelColl').empty();
     $.ajax({
         url:'/api/ejercicios/',
         type: 'GET',
         success:function(ejercicio){
-            console.log(ejercicio);
             ejercicio.ejercicios.forEach(function(i){
               	$('#panelColl').append($('<div>',{"class":"panel panel-info","id":''+i._id}).append($('<div>',{"class":"panel-heading","id":'c'+i._id}).append(i.titulo+'	')));
                	$('#'+i._id).append($('<div>',{"class":"panel-body"}).append(i.descripcion));
@@ -16,6 +16,9 @@ function LoadData() {
 }
 
 function mostrarData(clave){
+	$('#btnAdd').hide();
+	$('#btnEdit').show();
+	$('#modalEjerc').modal('show');
 	$.ajax({
         url:'/api/ejercicios/'+clave,
         type: 'GET',
@@ -27,17 +30,17 @@ function mostrarData(clave){
 
 $(document).ready(function() {
     LoadData();
-    
+    $('#btnEdit').hide(); 
+    $('#btnnew').click(function(){
+		$('#btnAdd').show();
+		$('#btnEdit').hide();    	
+    })
 });
 
 
  function colocarEjercicios(nivel){
 
  }
-
-
-
-
 
 $(function() {
 
