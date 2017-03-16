@@ -35,6 +35,7 @@ $(function() {
 });
 
 function mostrarData(clave){
+	$("#errorMsj").hide();
 	$('#btnAdd').hide();
 	$('#btnEdit').show();
 	$('#modalEjerc').modal('show');
@@ -58,6 +59,7 @@ $(document).ready(function() {
     LoadData();
     $('#btnEdit').hide(); 
     $('#btnnew').click(function(){
+    	$("#errorMsj").hide();
 		$('#btnAdd').show();
 		$('#btnEdit').hide();
 		borrarCampos();    	
@@ -69,7 +71,8 @@ $(function() {
 
 		if ( $("input[name=titulo]").val() === "" || $("#descrip").val() === "" || $("input[name=datoEntrada]").val() === "" || $("input[name=datoSalida]").val() === "" || $("input[name=etiq]").val() === "" || $("#nivel").val() === "" ) {
 			console.log("campos vacios");
-			$("#errorMsj").attr("class","alert alert-danger").text("Se deben completar todos los campos...!!");
+			$("#errorMsj").show();
+			$("#errorMsj").attr("class","alert alert-danger").text("Se deben completar todos los campos!!");
 			return;		
 		}
 
@@ -107,7 +110,8 @@ $(function() {
 
 		if ( $("input[name=titulo]").val() === "" || $("#descrip").val() === "" || $("input[name=datoEntrada]").val() === "" || $("input[name=datoSalida]").val() === "" || $("input[name=etiq]").val() === "" || $("#nivel").val() === "" ) {
 			console.log("campos vacios");
-			$("#errorMsj").attr("class","alert alert-danger").text("Se deben completar todos los campos...!!");
+			$("#errorMsj").show();
+			$("#errorMsj").attr("class","alert alert-danger").text("Se deben completar todos los campos!!");
 			return;		
 		}
 		
