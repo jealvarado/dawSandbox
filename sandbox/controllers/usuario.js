@@ -124,7 +124,7 @@ function saveUsuario (req,res) {
 	usuario.save( (err, usuarioStored) => {
 		if (err){
 			res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
-			console.log(err)
+			// console.log(err)
 		}
 		else{
 			if ( usuarioStored.rol == "Estudiante" ) {
@@ -136,11 +136,13 @@ function saveUsuario (req,res) {
 				perfil.ejIntermedio = 0,
 				perfil.ejDificil = 0
 
-				console.log(perfil);
+				// console.log(perfil);
 				
 				perfil.save( (err, perfilStored) => {
+					
 					if (err)
 						res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`})
+					
 					var correo= req.body.correo;
 					var Subject="Creacion de cuenta en Sandbox"
 					var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + req.body.contrasena; 
@@ -149,6 +151,7 @@ function saveUsuario (req,res) {
 						subject: Subject,
 						text: contenido
 					}
+
 					smtpTransport.sendMail(mailOptions, function(error, response){
 						if (error) {
 							console.log(error);
@@ -162,11 +165,13 @@ function saveUsuario (req,res) {
 				var correo= req.body.correo;
 				var Subject="Creacion de cuenta en Sandbox"
 				var contenido="Bienvenido/a al curso Fundamentos de programacion, tu contrasena Temporal para Sandbox es: " + req.body.contrasena; 
+				
 				var mailOptions = {
 					to: correo,
 					subject: Subject,
 					text: contenido
 				}
+				
 				smtpTransport.sendMail(mailOptions, function(error, response){
 					if (error) {
 						console.log(error);

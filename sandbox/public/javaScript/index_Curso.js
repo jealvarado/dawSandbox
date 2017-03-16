@@ -79,12 +79,12 @@ function cargaCursos() {
 
 		        },
 		        error			: function (err) {
-            		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+            		console.log( err.responseJSON.message );            	
             	}
 			});			
 		},
 		error			: function (err) {
-        	msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        	console.log( err.responseJSON.message );
         }
 	});	
 }
@@ -256,10 +256,11 @@ $(function() {
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {	            
 	            cargaCursos();
-	            $('#cursoMDL').modal('hide');	            
+	            $('#cursoMDL').modal('hide');
+	            msjExito( "Se creo registro con exito" );	            
 	        },
 	        error			: function (err) {
-        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        		msjError( err.responseJSON.message, "#cursoMDL .modal-body #errMsj" );            	
         	}
 		});
 		
@@ -282,10 +283,11 @@ $(function() {
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {	            
 	            cargaCursos();
-	            $('#cursoEliMDL').modal('hide');	            
+	            $('#cursoEliMDL').modal('hide');
+	            msjExito( "Se elimino registro con exito" );	            
 	        },
 	        error			: function (err) {
-        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        		msjError( err.responseJSON.message, "#cursoEliMDL .modal-body #errMsj" );            	
         	}
 		});
 		
@@ -312,10 +314,11 @@ $(function() {
 	        success 		: function(response) {
 	            // console.log(response);
 	            cargaCursos();
-	            $('#cursoProfMDL').modal('hide');	            
+	            $('#cursoProfMDL').modal('hide');	
+	            msjExito( "Se actualizo registro con exito" );            
 	        },
 	        error			: function (err) {
-        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        		msjError( err.responseJSON.message, "#cursoProfMDL .modal-body #errMsj" );            	
         	}
 		});
 
@@ -345,9 +348,10 @@ $(function() {
 	            // console.log(response);
 	            cargaEstsnParl();
 	            // $('#cursoEstudMDL').modal('hide');
+	            msjExitoMDL( "Se agrego registro con exito","#cursoEstudMDL .modal-body #errMsj" );
 	        },
 	        error			: function (err) {
-        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        		msjError( err.responseJSON.message, "#cursoEstudMDL .modal-body #errMsj" );            	
         	}
 		});
 			
@@ -374,9 +378,10 @@ $(function() {
 	        success 		: function(response) {
 	            // console.log(response);
 	            cargaEstParl( paralelo )
+	            msjExitoMDL( "Se quito registro con exito","#cursoEdtEstudMDL .modal-body #errMsj" );
 	        },
 	        error			: function (err) {
-        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        		msjError( err.responseJSON.message, "#cursoEdtEstudMDL .modal-body #errMsj" );            	
         	}
 		});
 			
@@ -488,14 +493,20 @@ $(document).ready(function() {
 
 
 function msjExito( msj ){
-	$("#msjSec2").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
-	$("#msjSec2").fadeIn();
-	$("#msjSec2").fadeOut(4000);
+	$("section .tab-pane #msjSec2").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
+	$("section .tab-pane #msjSec2").fadeIn();
+	$("section .tab-pane #msjSec2").fadeOut(4000);
+}
+
+function msjExitoMDL( msj, etiqMsj ){
+	$(etiqMsj).text( msj ).css( "background-color", "rgb(159, 255, 128)" );
+	$(etiqMsj).fadeIn();
+	$(etiqMsj).fadeOut(4000);
 }
 
 function msjError( msj, etiqMsj ){
-	$(etiqMsj).text( "prueba de error" ).css( "background-color", "rgb(255, 26, 26)" );
+	$(etiqMsj).text( msj ).css( "background-color", "rgb(255, 26, 26)" );
 	$(etiqMsj).fadeIn();
-	$(etiqMsj).fadeOut(4000);
+	$(etiqMsj).fadeOut(5000);
 }
 

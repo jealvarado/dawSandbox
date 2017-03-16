@@ -123,7 +123,8 @@ $(function() {
 	            
 	        },
 	        error			: function (err) {
-            	msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+	        	// console.log(err.responseJSON.message);
+            	msjError( err.responseJSON.message, "#usuarioMDL .modal-body #errMsj" );            	
             }
 		});
 
@@ -168,13 +169,12 @@ $(function() {
 	        success 		: function(response) {
 	            // console.log(response);
 	            // borrarCampos();
-	            LoadData();
-	            msjExito( "Se inserto registro con exito" );
+	            LoadData();	            
 	            $('#usrEditMDL').modal('hide');	    
-	            
+	            msjExito( "Se actualizo registro con exito" );
 	        },
 	        error			: function (err) {
-            	msjError( err );
+            	msjError( err.responseJSON.message, "#usrEditMDL .modal-body #errMsj" );
             }
 		});
 
@@ -198,13 +198,12 @@ $(function() {
 	        success 		: function(response) {
 	            // console.log(response);
 	            borrarCampos();
-	            LoadData();
-	            msjExito( "Se elimino registro con exito" );
+	            LoadData();	            
 	            $('#usrElitMDL').modal('hide');	  
-	            
+	            msjExito( "Se elimino registro con exito" );
 	        },
 	        error			: function (err) {
-            	msjError( err );
+            	msjError( err.responseJSON.message, "#usrElitMDL .modal-body #errMsj" );
             }
 		});
 		
@@ -242,15 +241,15 @@ function tipoIdentif(){
 
 
 function msjExito( msj ){
-	$("#msjSec1").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
-	$("#msjSec1").fadeIn();
-	$("#msjSec1").fadeOut(4000);
+	$("section .tab-pane #msjSec1").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
+	$("section .tab-pane #msjSec1").fadeIn();
+	$("section .tab-pane #msjSec1").fadeOut(4000);
 }
 
 function msjError( msj, etiqMsj ){
-	$(etiqMsj).text( "prueba de error" ).css( "background-color", "rgb(255, 26, 26)" );
+	$(etiqMsj).text( msj ).css( "background-color", "rgb(255, 26, 26)" );
 	$(etiqMsj).fadeIn();
-	$(etiqMsj).fadeOut(4000);
+	$(etiqMsj).fadeOut(5000);
 }
 
 /*
