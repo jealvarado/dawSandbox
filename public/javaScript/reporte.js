@@ -50,7 +50,7 @@ $(document).ready(function(){
                       }
                   },
                   series: [{
-                      name: 'Brands',
+                      name: 'Ejercicios',
                       colorByPoint: true,
                       data:datos
                       }]

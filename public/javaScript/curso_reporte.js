@@ -95,7 +95,7 @@ function generarGrafico(resp){
                     }
                 },
                 series: [{
-                    name: 'Brands',
+                    name: 'Cursos',
                     colorByPoint: true,
                     data:datos
                     }]
