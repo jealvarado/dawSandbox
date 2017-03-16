@@ -89,4 +89,4 @@ ENV/
 .ropeproject
 
 # ignore everything in the directory
-sandbox/node_modules/*
+node_modules/*
