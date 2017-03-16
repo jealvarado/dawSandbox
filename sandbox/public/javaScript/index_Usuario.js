@@ -119,8 +119,9 @@ $(function() {
 	            // console.log(response);
 	            borrarCampos();
 	            LoadData();
+	            msjExito( "Se inserto registro con exito" );
 	            $('#usuarioMDL').modal('hide');
-	            msjExito( "Se inserto registro con exito" );            
+	            
 	        },
 	        error			: function (err) {
             	msjError( err );            	
@@ -166,11 +167,12 @@ $(function() {
 		    // dataType    	: 'json' 			// what type of data do we expect back from the server
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {
-	            console.log(response);
+	            // console.log(response);
 	            // borrarCampos();
 	            LoadData();
+	            msjExito( "Se inserto registro con exito" );
 	            $('#usrEditMDL').modal('hide');	    
-	            msjExito( "Se actualizo registro con exito" );          
+	            
 	        },
 	        error			: function (err) {
             	msjError( err );
@@ -196,10 +198,11 @@ $(function() {
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {
 	            // console.log(response);
-	            // borrarCampos();
+	            borrarCampos();
 	            LoadData();
+	            msjExito( "Se elimino registro con exito" );
 	            $('#usrElitMDL').modal('hide');	  
-	            msjExito( "Se elimino registro con exito" );            
+	            
 	        },
 	        error			: function (err) {
             	msjError( err );
@@ -220,6 +223,8 @@ function borrarCampos(){
 	$('input[name=carrera]').val('');
 	$('input[name=correo]').val('');
 	$('input[name=pass]').val('');
+
+	$('#usrEditMDL input').val('');
 }
 
 
