@@ -84,6 +84,19 @@ function getUsuariosEstudsnParal (req,res,next) {
 	})
 }
 
+function getUsuariosEstudParal (req,res,next) {
+	let paral = req.params.paralelo
+
+	Usuario.find({ rol : 'Estudiante', paralelo : paral }, (err, usuarios) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!usuarios)
+			return res.status(404).send({ message: `No existen usuarios`})
+
+		res.status(200).send({ usuarios })
+	})
+}
+
 
 /************/
 /* INSERTAR */
@@ -199,6 +212,7 @@ module.exports = {
 	getUsuariosProf,
 	getUsuariosEstud,
 	getUsuariosEstudsnParal,
+	getUsuariosEstudParal,
 	saveUsuario,
 	updateUsuario,
 	deleteUsuario
