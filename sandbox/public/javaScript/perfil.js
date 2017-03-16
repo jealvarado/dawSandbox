@@ -82,7 +82,3 @@ function saberSemana(d,m,a){
     if(semanas==0){semanas=52}
         return semanas;
 }
-
-
-
-

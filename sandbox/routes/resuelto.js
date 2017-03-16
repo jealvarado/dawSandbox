@@ -5,7 +5,7 @@ var resueltoCtrl = require('../controllers/resuelto');
 
 /* GET home page. */
 
-
+router.get('/actual',resueltoCtrl.getResueltoActual)
 router.get('/:resueltoId', resueltoCtrl.getResuelto);
 router.get('/usuario/:Id',resueltoCtrl.getResueltoUsuario)
 router.get('/', resueltoCtrl.getResueltos);

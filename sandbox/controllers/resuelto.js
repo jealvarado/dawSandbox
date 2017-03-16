@@ -28,6 +28,19 @@ function getResueltoUsuario (req,res) {
 	})
 }
 
+function getResueltoActual (req,res) {
+	let userId = "58c7567fc5b67533d0e26678" //req.user.session
+
+	Resuelto.find({ idUsuario : userId }, (err, resuelto) => {
+		if (err)
+			return res.status(500).send({ message: `Error al realizar la peticion: ${err}`})
+		if (!resuelto)
+			return res.status(404).send({ message: `No existe el Ej. resuelto`})
+
+		res.status(200).send({ resuelto })
+	})
+}
+
 function getResueltos (req,res) {
 	res.header('Access-Control-Allow-Origin', '*');
 	Resuelto.find({}, (err, resueltos) => {
@@ -123,5 +136,6 @@ module.exports = {
 	updateResuelto,
 	deleteResuelto,
 	resueltosPorFecha,
-	getResueltoUsuario
+	getResueltoUsuario,
+	getResueltoActual
 }

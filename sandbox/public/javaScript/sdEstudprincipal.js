@@ -6,6 +6,7 @@ function cargarP(){
 	$("#lis").append($("<li>",{"id":"avaz"}).append($("<a>",{"href":"#"}).text("Avanzado").click(cargarA)));
 	$("#cuer").empty();
 	$("#cuer").append("<h4><small>Principiante</small></h4><hr style=\"margin-bottom:20px;\">");
+	$("#cuer").append($("<div>",{"class":"panel-group","id":"accordion"}));
 	obtenerEjercicios("Facil")	
 }
 
@@ -16,6 +17,7 @@ function cargarM(){
 	$("#lis").append($("<li>",{"id":"avaz"}).append($("<a>",{"href":"#"}).text("Avanzado").click(cargarA)));
 	$("#cuer").empty();
 	$("#cuer").append("<h4><small>Intermedio</small></h4><hr style=\"margin-bottom:20px;\">");
+	$("#cuer").append($("<div>",{"class":"panel-group","id":"accordion"}));
 	obtenerEjercicios("Intermedio")
 }
 
@@ -26,12 +28,13 @@ function cargarA(){
 	$("#lis").append($("<li>",{"class":"active","id":"avaz"}).append($("<a>",{"href":"#"}).text("Avanzado")));
 	$("#cuer").empty();
 	$("#cuer").append("<h4><small>Dificil</small></h4><hr style=\"margin-bottom:20px;\">");
+	$("#cuer").append($("<div>",{"class":"panel-group","id":"accordion"}));
 	obtenerEjercicios("Dificil")
 }
 
 function agregarP(item){
 	$('#cuer').append(
-		$('<div>').attr({"class":"panel-group","id":"accordion","style":"margin-bottom: 5px;"}).append(
+		$('#accordion').append(
 			$('<div>').attr({'class':'panel panel-info'}).append(
 				$('<div>').attr('class','panel-heading').append(
 					$('<h4>').attr({'class':'panel-title','style':'overflow:auto'}).append(
@@ -62,7 +65,7 @@ function agregarP(item){
 
 function agregarI(item){
 	$('#cuer').append(
-		$('<div>').attr({"class":"panel-group","id":"accordion","style":"margin-bottom: 5px;"}).append(
+		$('#accordion').append(
 			$('<div>').attr({'class':'panel panel-warning'}).append(
 				$('<div>').attr('class','panel-heading').append(
 					$('<h4>').attr({'class':'panel-title','style':'overflow:auto'}).append(
@@ -93,7 +96,7 @@ function agregarI(item){
 
 function agregarA(item){
 	$('#cuer').append(
-		$('<div>').attr({"class":"panel-group","id":"accordion","style":"margin-bottom: 5px;"}).append(
+		$('#accordion').append(
 			$('<div>').attr({'class':'panel panel-danger'}).append(
 				$('<div>').attr('class','panel-heading').append(
 					$('<h4>').attr({'class':'panel-title','style':'overflow:auto'}).append(
@@ -135,11 +138,20 @@ function obtenerEjercicios(nivel){
         url:'/api/ejercicios/',
         type: 'GET',
         success:function(ejercicio){
-            ejercicio.ejercicios.forEach(function(i){
-              	if(i.nivel == nivel){
-              		agregarP(i)
-              	}
-            })
+        	ejercicio.ejercicios.forEach(function(i){
+	            if(i.nivel == nivel){
+	            	agregarP(i)
+	            }
+	        })
+        	$.ajax({
+        		url:'/api/resuelto/actual',
+        		type: 'GET',
+        		success:function(resuelto){
+    				resuelto.resuelto.forEach(function(i){
+	            		console.log(i.idEjercicio);
+	        		})
+	            }
+	        })
         }
     })
 }

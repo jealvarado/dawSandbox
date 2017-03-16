@@ -3,7 +3,7 @@
 var Perfil = require('../models/perfil');
 
 function getPerfil (req,res) {
-	let perfilId = "58c7567fc5b67533d0e26678"
+	let perfilId = "58c7567fc5b67533d0e26678" //req.user.session
 
 	Perfil.find({idestudiante:perfilId}, (err, perfil) => {
 		if (err)
