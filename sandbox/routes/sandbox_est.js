@@ -34,6 +34,7 @@ router.post('/ejercicio', function (req, res, next) {
 				if(err){
 					res.status(500).send("Error al buscar Ejercicio");
 				}
+				console.log("nivel "+ ejer.nivel + " .");
 				var entradas=ejer.datosEntrada.split(",");
 				var salidas=ejer.datosSalida.split(",");
 				var options = {
@@ -69,26 +70,31 @@ router.post('/ejercicio', function (req, res, next) {
 									let resuelto = new Resuelto();
 									resuelto.idUsuario = req.user._id;
 									resuelto.idEjercicio = req.body.idEjercicio;
-									resuelto.fecha = Date.now();
+									resuelto.fecha = new Date().toISOString();
 									resuelto.save( (err, resueltoStored) => {
 										if (err)
 											return res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`});
-										Perfil.findOne({}, function (err, per) {
+										Perfil.findOne({idestudiante:req.user.id}, function (err, per) {
 											if (err) {
 												return res.status(500).send({ message: `Error al buscar Perfil de Usuario: ${err}`});
-											}
+											}											
 											if (ejer.nivel=='Facil') {
-												per.ejFacil+=1;
+												console.log("Facil")
+												console.log(per.ejFacil)
+												per.ejFacil=per.ejFacil+1;
 											}else if (ejer.nivel=='Intermedio') {
-												per.ejIntermedio+=1;
+												console.log("Intermedio")
+												per.ejIntermedio=per.ejIntermedio+1;
 											}
 											else{
-												per.ejDificil+=1;
+												console.log("Intermedio")
+												per.ejDificil=per.ejDificil+1;
 											}
 											per.save(function (err, updatedPerfil) {
 												if (err) {
 													return res.status(500).send({ mensaje: `Error al grabar en la base de datos: ${err}`});
 												}
+												console.log(updatedPerfil);
 												return res.status(200).send({'estado': true, mensaje: "Codigo ejecutado corectamente", "results":formatted});
 											});
 										});

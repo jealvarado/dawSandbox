@@ -52,20 +52,20 @@ function insigniaSemana(clave){
                 }
             })
             console.log(contE)
-            if(contE<10&&contE<20){
+            if(contE>=10&&contE<20){
                 $("#dataUser").append($("<strong>").text("Nivel: Novato "));
             }else if (contE>=20&&contE<30){
                 $("#dataUser").append($("<strong>").text("Nivel: Pro "));
-            }else if(contE>30){
+            }else if(contE>=30){
                 $("#dataUser").append($("<strong>").text("Nivel: Experto"));
             }
             $("#dataUser").append("<br>");
             console.log(contS)
-            if(contS<5&&contS<10){
+            if(contS>=5&&contS<10){
                 $("#dataUser").append($("<strong>").text("Insignia de la Semana: Indestructible "));
             }else if (contS>=10&&contS<15){
                 $("#dataUser").append($("<strong>").text("Insignia de la Semana: Duro de Matar "));
-            }else if(contS>15){
+            }else if(contS>=15){
                 $("#dataUser").append($("<strong>").text("Insignia de la Semana: Rapido y Furioso"));
             }
         }
