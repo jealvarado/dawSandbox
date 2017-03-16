@@ -75,7 +75,6 @@ var obtener_data_editar = function(tbody, table){
 
 
 $(document).ready(function() {
-    //$("#my-button").click(LoadData);
     LoadData();
 });
 
@@ -117,14 +116,14 @@ $(function() {
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {
 	            // console.log(response);
-	            borrarCampos();
-	            LoadData();
 	            msjExito( "Se inserto registro con exito" );
+	            borrarCampos();
+	            LoadData();	            
 	            $('#usuarioMDL').modal('hide');
 	            
 	        },
 	        error			: function (err) {
-            	msjError( err );            	
+            	msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
             }
 		});
 
@@ -224,7 +223,7 @@ function borrarCampos(){
 	$('input[name=correo]').val('');
 	$('input[name=pass]').val('');
 
-	$('#usrEditMDL input').val('');
+	// $('#usrEditMDL input').val('');
 }
 
 
@@ -248,10 +247,10 @@ function msjExito( msj ){
 	$("#msjSec1").fadeOut(4000);
 }
 
-function msjError( msj ){
-	$("#msjSec1").text( msj ).css( "background-color", "rgb(255, 26, 26)" );
-	$("#msjSec1").fadeIn();
-	$("#msjSec1").fadeOut(4000);
+function msjError( msj, etiqMsj ){
+	$(etiqMsj).text( "prueba de error" ).css( "background-color", "rgb(255, 26, 26)" );
+	$(etiqMsj).fadeIn();
+	$(etiqMsj).fadeOut(4000);
 }
 
 /*

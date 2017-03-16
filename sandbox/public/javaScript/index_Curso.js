@@ -77,9 +77,15 @@ function cargaCursos() {
 
 					obtener_data("#cursosTabla tbody", tbls);
 
-		        }
+		        },
+		        error			: function (err) {
+            		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+            	}
 			});			
-		}
+		},
+		error			: function (err) {
+        	msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        }
 	});	
 }
 
@@ -251,7 +257,10 @@ $(function() {
 	        success 		: function(response) {	            
 	            cargaCursos();
 	            $('#cursoMDL').modal('hide');	            
-	        }
+	        },
+	        error			: function (err) {
+        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        	}
 		});
 		
 	});
@@ -274,7 +283,10 @@ $(function() {
 	        success 		: function(response) {	            
 	            cargaCursos();
 	            $('#cursoEliMDL').modal('hide');	            
-	        }
+	        },
+	        error			: function (err) {
+        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        	}
 		});
 		
 	});
@@ -301,7 +313,10 @@ $(function() {
 	            // console.log(response);
 	            cargaCursos();
 	            $('#cursoProfMDL').modal('hide');	            
-	        }
+	        },
+	        error			: function (err) {
+        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        	}
 		});
 
 	});
@@ -330,7 +345,10 @@ $(function() {
 	            // console.log(response);
 	            cargaEstsnParl();
 	            // $('#cursoEstudMDL').modal('hide');
-	        }
+	        },
+	        error			: function (err) {
+        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        	}
 		});
 			
 	}
@@ -356,7 +374,10 @@ $(function() {
 	        success 		: function(response) {
 	            // console.log(response);
 	            cargaEstParl( paralelo )
-	        }
+	        },
+	        error			: function (err) {
+        		msjError( err, "#usuarioMDL .modal-body #errMsj" );            	
+        	}
 		});
 			
 	}
@@ -369,6 +390,7 @@ $(function() {
 
 var obtener_data = function(tbody, table){
 
+	/* Carga datos del prof para crear el nuevo curso */
 	$(tbody).on("click", "button.addProf", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -377,15 +399,8 @@ var obtener_data = function(tbody, table){
 	    $('#profCurso_id').val(data._id)
 	});
 
-	$(tbody).on("click", "button.elimCurso", function(){
-		var data = table.row( $(this).parents("tr") ).data();
-		// console.log(data);
-
-		$('#eli_paral').text(data.paralelo)
-		$('#eli_prof').text(data.profesor)
-	    $('#eliCrs_id').val(data.id)
-	});
-
+	
+	/* Pasa datos a modal que presenta estudiantes sin curso */
 	$(tbody).on("click", "button.addEstCurso", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -394,6 +409,8 @@ var obtener_data = function(tbody, table){
 	    $('#estudCursoid').val(data.paralelo)
 	});
 
+
+	/* Actualiza el paralelo del estudiante sin curso */
 	$(tbody).on("click", "button.addEst", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -413,6 +430,8 @@ var obtener_data = function(tbody, table){
 
 	});
 
+
+	/* Pasa datos de la tabla de editar estudiantes por curso para quitarlos */
 	$(tbody).on("click", "button.delEst", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -421,6 +440,8 @@ var obtener_data = function(tbody, table){
 
 	});
 
+
+	/* Pasa datos a modal de editar profesor del curso */
 	$(tbody).on("click", "button.edtProfCurso", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -430,6 +451,8 @@ var obtener_data = function(tbody, table){
 		$('#profEditCrs').val(data.profesor)
 	});
 
+
+	/* Carga id del nuevo profesor del curso actualizar en el modal de editar profesor del curso */
 	$(tbody).on("click", "button.editProfCrs", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -437,6 +460,17 @@ var obtener_data = function(tbody, table){
 		$('#profEditCrs_id').val(data._id)
 		$('#profEditCrs').val(data.nombre+" "+data.apellido)
 	});	
+
+
+	/* Pasa datos a modal de eliminar curso */
+	$(tbody).on("click", "button.elimCurso", function(){
+		var data = table.row( $(this).parents("tr") ).data();
+		// console.log(data);
+
+		$('#eli_paral').text(data.paralelo)
+		$('#eli_prof').text(data.profesor)
+	    $('#eliCrs_id').val(data.id)
+	});
 
 }
 
@@ -459,9 +493,9 @@ function msjExito( msj ){
 	$("#msjSec2").fadeOut(4000);
 }
 
-function msjError( msj ){
-	$("#msjMDL").text( msj ).css( "background-color", "rgb(255, 26, 26)" );
-	$("#msjMDL").fadeIn();
-	$("#msjMDL").fadeOut(4000);
+function msjError( msj, etiqMsj ){
+	$(etiqMsj).text( "prueba de error" ).css( "background-color", "rgb(255, 26, 26)" );
+	$(etiqMsj).fadeIn();
+	$(etiqMsj).fadeOut(4000);
 }
 
