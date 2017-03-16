@@ -2,7 +2,6 @@ $(document).ready(function() {
     LoadData();    
 });
 
-
 function LoadData() {
     $.ajax({
         url:'/api/perfil/usuario',
@@ -71,7 +70,6 @@ function insigniaSemana(clave){
         }
     })
 }
-
 
 function saberSemana(d,m,a){
     fecha=new Date(a,0,1);
