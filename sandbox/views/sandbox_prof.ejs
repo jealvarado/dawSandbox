@@ -8,7 +8,6 @@
 		<title><%= title %></title>
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/stylesheets/sandbox_prof.css">
-
 		<link rel="stylesheet" href="/stylesheets/index_style00.css">
 		<link rel="stylesheet" href="/stylesheets/index_style01.css">
 		<!--<link rel="stylesheet" href="/stylesheets/style.css">-->
@@ -27,14 +26,24 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="/sandbox_est">
-							<img src="/img/logo.png" alt="Fundamentos de Programación"><h5>Fundamentos de Programación</h5>
+							<!-- <a href="#" class="navbar-brand">Fundamentos de Programación</a> -->
+							<a class="navbar-brand" href="index">
+							<img src="/img/logo.png" alt="Fundamentos de Programación">
 							</a>
 						</div>
+
 					<div class="collapse navbar-collapse" id="navbar-1">
 							<ul class="nav navbar-nav navbar-right">
 								<li  class="active"><a href="#">Sandbox</a></li>
 								<li  class="active"><a href="/logout">Cerrar Sesion</a></li>
+							<ul class="nav navbar-nav navbar-right">								
+								<li class="dropdown active"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Reportes<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="reporte/fecha">Reporte por Fecha</a></li>
+										<li><a href="reporte/curso">Reporte por Ejercicios</a></li>
+									</ul>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -49,10 +58,9 @@
 					<div class="tab-content">
 					    <div id="seccion1" class="tab-pane fade in active">
 					    		<br>
-					        	<button type="button" class="btn btn-default btn-sm" id ="btnnew" data-toggle="modal" data-target="#modalEjerc">Nuevo</button>
+					        	<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalEjerc">Nuevo</button>
 					        	<br>
 								<div class="panel-group col-xs-7 col-md-8" id="panelColl">
-
 								</div>
 						    <!-- </div> -->
 					    </div>
@@ -106,33 +114,12 @@
 						    <p id="errorMsj"></p>
 						    <div class="form-group">
 						    	<button id="btnAdd" class="btn">Agregar</button>
-						    	<button id="btnEdit" class="btn">Editar</button>
 						    </div>
 					    </div>
 					</div>
 				</div>
 			</div>
 			<!-- Fin Modal -->
-
-			<div id="modalElim" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
-
-			    <!-- Modal content-->
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title" style="color:red;">Peligro</h4>
-			      </div>
-			      <div class="modal-body">
-			        <h5>¿Desea eliminar el ejercicio? </h5>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" id="btnDelete" class="btn btn-danger" data-dismiss="modal">SI</button>
-			      </div>
-			    </div>
-
-			  </div>
-			</div>
 
 			<footer>
 				<div id="sub-footer">
