@@ -69,7 +69,7 @@ router.post('/ejercicio', function (req, res, next) {
 									let resuelto = new Resuelto();
 									resuelto.idUsuario = req.user._id;
 									resuelto.idEjercicio = req.body.idEjercicio;
-									resuelto.fecha = Date.now();
+									resuelto.fecha = new Date().toISOString();
 									resuelto.save( (err, resueltoStored) => {
 										if (err)
 											return res.status(500).send({ message: `Error al grabar en la base de datos: ${err}`});
