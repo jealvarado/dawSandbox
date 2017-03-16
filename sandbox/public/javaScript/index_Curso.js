@@ -71,7 +71,8 @@ function cargaCursos() {
 					        		"<i class='fa fa-trash-o'></i>"+
 					        	"</button>"
 					        }
-					    ]
+					    ],
+	    				lengthMenu: [ [5, 10, -1], [5, 10, "All"] ]
 					});
 
 					obtener_data("#cursosTabla tbody", tbls);
@@ -450,7 +451,15 @@ $(document).ready(function() {
 });
 
 
-/*
-$("#div1").fadeIn();
-$("#div1").fadeOut(3000);
-*/
+function msjExito( msj ){
+	$("#msjSec2").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
+	$("#msjSec2").fadeIn();
+	$("#msjSec2").fadeOut(4000);
+}
+
+function msjError( msj ){
+	$("#msjMDL").text( msj ).css( "background-color", "rgb(255, 26, 26)" );
+	$("#msjMDL").fadeIn();
+	$("#msjMDL").fadeOut(4000);
+}
+

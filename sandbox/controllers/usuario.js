@@ -187,6 +187,10 @@ function updateUsuario (req,res) {
 	let usuarioId = req.params.usuarioId
 	let update = req.body
 
+	if ( update.contrasena != undefined || update.contrasena != null ) {
+		update.contrasena = createHash(update.contrasena);
+	}
+	
 	Usuario.findByIdAndUpdate( usuarioId, update, (err, usuarioUpdate) => {
 		if (err)
 			res.status(500).send({ message: `Error al actualizar el usuario: ${err}`})
