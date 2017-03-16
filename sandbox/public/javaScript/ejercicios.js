@@ -21,7 +21,6 @@ function LoadData() {
 function eliminarData(clave){
 	$('#modalElim').modal('show');
 	borrar=clave;
-
 }
 
 $(function() {
