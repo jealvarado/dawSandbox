@@ -13,6 +13,7 @@ var usuarioCtrl = require('../controllers/usuario');
 router.get('/prof', usuarioCtrl.getUsuariosProf);
 router.get('/estud', usuarioCtrl.getUsuariosEstud);
 router.get('/estudsnparal', usuarioCtrl.getUsuariosEstudsnParal);
+router.get('/estudparal/:paralelo', usuarioCtrl.getUsuariosEstudParal);
 router.get('/:usuarioId', usuarioCtrl.getUsuario);
 router.get('/', usuarioCtrl.getUsuarios);
 router.post('/', usuarioCtrl.saveUsuario);

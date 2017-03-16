@@ -64,14 +64,15 @@ function cargaCursos() {
 					        	"<button type='button' class='edtEstCurso btn btn-success' data-toggle='modal' data-target='#cursoEdtEstudMDL' title='Ver Estud' >"+
 					        		"<i class='fa fa-eye'></i>"+
 					        	"</button>"+
-					        	"<button type='button' class='edtProfCurso btn btn-primary' onclick='cargaEditProf()'data-toggle='modal' data-target='#cursoProfMDL' title='Editar Prof' >"+
+					        	"<button type='button' class='edtProfCurso btn btn-primary' onclick='cargaEditProf()' data-toggle='modal' data-target='#cursoProfMDL' title='Editar Prof' >"+
 					        		"<i class='fa fa-user'></i>"+
 					        	"</button>"+
 					        	"<button type='button' class='elimCurso btn btn-danger' data-toggle='modal' data-target='#cursoEliMDL' title='Eliminar Curso' >"+
 					        		"<i class='fa fa-trash-o'></i>"+
 					        	"</button>"
 					        }
-					    ]
+					    ],
+	    				lengthMenu: [ [5, 10, -1], [5, 10, "All"] ]
 					});
 
 					obtener_data("#cursosTabla tbody", tbls);
@@ -109,7 +110,8 @@ function cargaProf() {
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"
 	        }
-	    ]
+	    ],
+	    lengthMenu: [ 4 ]
     });
 
     obtener_data("#profTabla tbody", tbls1);
@@ -143,7 +145,8 @@ function cargaEditProf() {
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"
 	        }
-	    ]
+	    ],
+	    lengthMenu: [ 4 ]
     });
 
     obtener_data("#profEditTabla tbody", tbls2);
@@ -177,11 +180,49 @@ function cargaEstsnParl() {
 	        		"<i class='fa fa-pencil-square-o'></i>"+
 	        	"</button>"
 	        }
-	    ]
+	    ],
+	    lengthMenu: [ 4 ]
     });
 
     obtener_data("#EstTabla tbody", tbls3);
 }
+
+
+
+function cargaEstParl(paralelo) {
+    var estParTabl = $("#EstParalTbl")
+    	.html(
+    			"<table><thead><tr>"+
+					"<th width='10%'>Identificacion</th>"+
+					"<th>Nombres</th>"+
+					"<th>Apellidos</th>"+							
+					"<th>Accion</th>"+
+				"</tr></thead></table>"
+			);
+
+    var tbls4 = $("table",estParTabl).DataTable({
+    	ajax: {
+	        url: '/api/usuario/estudparal/'+paralelo,
+	        type: 'GET',
+	        dataSrc: 'usuarios'
+	    },
+	    columns: [
+	        { "data": "ident" },	        
+	        { "data": "nombre" },
+	        { "data": "apellido" },
+	        { "defaultContent": 
+	        	"<button type='button' class='delEst btn btn-danger' data-toggle='tooltip' title='Quitar Estud'>"+
+	        		"<i class='fa fa-trash-o'></i>"+
+	        	"</button>"
+	        }
+	    ],
+	    lengthMenu: [ 4 ]
+	    // lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
+    });
+
+    obtener_data("#EstParalTbl tbody", tbls4);
+}
+
 
 
 /**************************************/
@@ -248,7 +289,7 @@ $(function() {
 			cursoId		: $('#paralEditCrs_id').val(),
 	        profesor    : $('#profEditCrs_id').val()
 	    };
-	    console.log(formData);
+	    // console.log(formData);
      	        
 	    $.ajax({
 	        url 			: '/api/cursos/'+formData.cursoId,	// the url where we want to POST
@@ -277,7 +318,7 @@ $(function() {
 			usuarioId	: $('#estudSN_id').val(),
 	        paralelo    : $('#estudCursoid').val()
 	    };
-	    console.log(formData);
+	    // console.log(formData);
 	 	       
 	    $.ajax({
 	        url 			: '/api/usuario/'+formData.usuarioId,	// the url where we want to POST
@@ -293,6 +334,33 @@ $(function() {
 		});
 			
 	}
+
+
+	/***********************************/
+	/* Elimina estudiantes del curso */
+	/***********************************/
+	function elimEstCrs( est_id, paralelo ) {
+	    
+		var formData = {
+			usuarioId	: est_id,
+	        paralelo    : "00"
+	    };
+	    // console.log(formData);
+	 	       
+	    $.ajax({
+	        url 			: '/api/usuario/'+formData.usuarioId,	// the url where we want to POST
+	        type 			: 'PUT', 			// define the type of HTTP verb we want to use (POST for our form)
+		    data 			: formData,			// our data object
+		    // dataType    	: 'json' 			// what type of data do we expect back from the server
+		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
+	        success 		: function(response) {
+	            // console.log(response);
+	            cargaEstParl( paralelo )
+	        }
+		});
+			
+	}
+
 
 
 /********************************************/
@@ -335,6 +403,22 @@ var obtener_data = function(tbody, table){
 		grabaEstCrs()
 	});
 
+	$(tbody).on("click", "button.edtEstCurso", function(){
+		var data = table.row( $(this).parents("tr") ).data();
+		// console.log(data);
+
+		cargaEstParl(data.paralelo)
+
+	});
+
+	$(tbody).on("click", "button.delEst", function(){
+		var data = table.row( $(this).parents("tr") ).data();
+		// console.log(data);
+
+		elimEstCrs( data._id, data.paralelo )
+
+	});
+
 	$(tbody).on("click", "button.edtProfCurso", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
@@ -367,7 +451,15 @@ $(document).ready(function() {
 });
 
 
-/*
-$("#div1").fadeIn();
-$("#div1").fadeOut(3000);
-*/
+function msjExito( msj ){
+	$("#msjSec2").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
+	$("#msjSec2").fadeIn();
+	$("#msjSec2").fadeOut(4000);
+}
+
+function msjError( msj ){
+	$("#msjMDL").text( msj ).css( "background-color", "rgb(255, 26, 26)" );
+	$("#msjMDL").fadeIn();
+	$("#msjMDL").fadeOut(4000);
+}
+

@@ -36,7 +36,8 @@ function LoadData() {
 	        		"<i class='fa fa-trash-o'></i>"+
 	        	"</button>"
 	        }
-	    ]
+	    ],
+	    lengthMenu: [ [5, 10, -1], [5, 10, "All"] ]
     });
 
     obtener_data_editar("#usuariosTabla tbody", tbl);
@@ -115,11 +116,15 @@ $(function() {
 		    // dataType    	: 'json' 			// what type of data do we expect back from the server
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {
-	            console.log(response);
+	            // console.log(response);
 	            borrarCampos();
 	            LoadData();
-	            $('#usuarioMDL').modal('hide');	            
-	        }
+	            $('#usuarioMDL').modal('hide');
+	            msjExito( "Se inserto registro con exito" );            
+	        },
+	        error			: function (err) {
+            	msjError( err );            	
+            }
 		});
 
 	});
@@ -127,17 +132,31 @@ $(function() {
 
 	$('#btnAct').on('click', function() {
 
-		var formData = {
-			usuarioId	: $('#edit_id').val(),
-	        nombre      : $('#edit_nomb').val(),
-	        apellido    : $('#edit_apel').val(),
-	        ident		: $('#edit_ident').val(),
-	        carrera		: $('#edit_carr').val(),
-	        correo		: $('#edit_correo').val(),
-	        contrasena	: $('#edit_pass').val(),
-	        rol 		: $('#edit_rol').val()
-	    };
-	    console.log(formData);
+		var formData;
+
+		if ( $('#edit_pass').val() == "" ) {
+			formData = {
+				usuarioId	: $('#edit_id').val(),
+		        nombre      : $('#edit_nomb').val(),
+		        apellido    : $('#edit_apel').val(),
+		        ident		: $('#edit_ident').val(),
+		        carrera		: $('#edit_carr').val(),
+		        correo		: $('#edit_correo').val(),
+		        rol 		: $('#edit_rol').val()
+		    }
+		}else{
+			formData = {
+				usuarioId	: $('#edit_id').val(),
+		        nombre      : $('#edit_nomb').val(),
+		        apellido    : $('#edit_apel').val(),
+		        ident		: $('#edit_ident').val(),
+		        carrera		: $('#edit_carr').val(),
+		        correo		: $('#edit_correo').val(),
+		        contrasena	: $('#edit_pass').val(),
+		        rol 		: $('#edit_rol').val()
+		    }
+		}
+	    // console.log(formData);
 
 	    // process the form	       	        
 	    $.ajax({
@@ -150,8 +169,12 @@ $(function() {
 	            console.log(response);
 	            // borrarCampos();
 	            LoadData();
-	            $('#usrEditMDL').modal('hide');	            
-	        }
+	            $('#usrEditMDL').modal('hide');	    
+	            msjExito( "Se actualizo registro con exito" );          
+	        },
+	        error			: function (err) {
+            	msjError( err );
+            }
 		});
 
 	});
@@ -172,11 +195,15 @@ $(function() {
 		    // dataType    	: 'json' 			// what type of data do we expect back from the server
 		    contentType 	: 'application/x-www-form-urlencoded; charset=UTF-8',	// When sending data to the server
 	        success 		: function(response) {
-	            console.log(response);
+	            // console.log(response);
 	            // borrarCampos();
 	            LoadData();
-	            $('#usrElitMDL').modal('hide');	            
-	        }
+	            $('#usrElitMDL').modal('hide');	  
+	            msjExito( "Se elimino registro con exito" );            
+	        },
+	        error			: function (err) {
+            	msjError( err );
+            }
 		});
 		
 	});
@@ -209,6 +236,18 @@ function tipoIdentif(){
 	}
 }
 
+
+function msjExito( msj ){
+	$("#msjSec1").text( msj ).css( "background-color", "rgb(159, 255, 128)" );
+	$("#msjSec1").fadeIn();
+	$("#msjSec1").fadeOut(4000);
+}
+
+function msjError( msj ){
+	$("#msjSec1").text( msj ).css( "background-color", "rgb(255, 26, 26)" );
+	$("#msjSec1").fadeIn();
+	$("#msjSec1").fadeOut(4000);
+}
 
 /*
 var options = {
