@@ -190,7 +190,7 @@ function cargaEstsnParl() {
 
 
 function cargaEstParl(paralelo) {
-    var estParTabl = $("#EstParalTbl")
+    var estParTabl = $("#EstxParalTbl")
     	.html(
     			"<table><thead><tr>"+
 					"<th width='10%'>Identificacion</th>"+
@@ -220,7 +220,7 @@ function cargaEstParl(paralelo) {
 	    // lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
     });
 
-    obtener_data("#EstParalTbl tbody", tbls4);
+    obtener_data("#EstxParalTbl tbody", tbls4);
 }
 
 
@@ -403,6 +403,8 @@ var obtener_data = function(tbody, table){
 		grabaEstCrs()
 	});
 
+
+	/* Pasa datos a modal de editar estudiantes por curso */
 	$(tbody).on("click", "button.edtEstCurso", function(){
 		var data = table.row( $(this).parents("tr") ).data();
 		// console.log(data);
