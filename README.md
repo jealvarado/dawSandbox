@@ -1,2 +1,2 @@
-# proyectoDAWParcial2
-Repositorio para el Segundo Parcial de DAW
+# dawSandbox
+Continuacion del proyecto final de DAW en https://github.com/jealvarado/proyectoDAWParcial2
